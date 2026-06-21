@@ -1,0 +1,22 @@
+[project]
+name = "arsens-project-editor"
+version = "0.1.0"
+description = "Desktop editor to prepare ARsens projects (3D viewport, tags, sensors, export)."
+requires-python = ">=3.11"
+dependencies = [
+    "PySide6",
+    "pyvista",
+    "pyvistaqt",
+    "trimesh",
+    "rtree",
+    "numpy",
+    "pandas",
+    "openpyxl",
+    "pydantic>=2",
+]
+
+[project.optional-dependencies]
+dev = ["pytest"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
