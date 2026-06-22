@@ -9,11 +9,18 @@ from pyvistaqt import QtInteractor
 
 from . import excel_io, export_package, json_io, mesh_loader, validation
 from . import geometry as geo
-from .models import Marker, Project, Sensor, StlModel
+from .models import Marker, PlacementOrigin, Project, Sensor, SensorStatus, StlModel
 from .viewport import TransformerScene
 
 _ERROR_RED = "#D32F2F"
 _WARN_AMBER = "#C9851F"
+
+_STATUS_OPTS = ["pending", "ok", "fail"]
+_ORIGIN_OPTS = ["prepared", "on_the_fly"]
+_PLANE_OPTS = ["front", "back", "left", "right", "top"]
+_ROLE_OPTS = ["TANK", "COVER", "CORE", "ACTIVE_PART", "WIKSETS", "BUSHINGS_TURRETS", "OTHER"]
+_YESNO_OPTS = ["yes", "no"]
+_MODEL_FILTER = "3D models (*.stl *.obj *.ply *.glb *.gltf *.3mf *.off *.dae);;All files (*)"
 
 
 def _noedit(item: QtWidgets.QTableWidgetItem) -> QtWidgets.QTableWidgetItem:
@@ -102,6 +109,12 @@ class MainWindow(QtWidgets.QMainWindow):
         apply_btn = QtWidgets.QPushButton("Apply project settings")
         apply_btn.clicked.connect(self._apply_project_settings)
         form.addRow(apply_btn)
+        fit_btn = QtWidgets.QPushButton("Auto-align model to box (fit)")
+        fit_btn.clicked.connect(self._fit_model_to_box)
+        form.addRow(fit_btn)
+        center_btn = QtWidgets.QPushButton("Center model in box")
+        center_btn.clicked.connect(self._center_model_in_box)
+        form.addRow(center_btn)
         box_btn = QtWidgets.QPushButton("Box = model bounding box")
         box_btn.clicked.connect(self._box_from_model)
         form.addRow(box_btn)
@@ -137,7 +150,7 @@ class MainWindow(QtWidgets.QMainWindow):
         self.tabs.addTab(self._table_panel(self.tag_table, self.add_tag, self._del_tag), "Tags")
 
         self.model_table = self._make_table(
-            ["id", "file_name", "scale%", "off_x", "off_y", "off_z", "visible"])
+            ["id", "file_name", "scale%", "off_x", "off_y", "off_z", "role", "visible"])
         self.model_table.itemChanged.connect(self._on_model_changed)
         self.tabs.addTab(self._table_panel(self.model_table, None, self._del_model), "Models")
 
@@ -214,13 +227,16 @@ class MainWindow(QtWidgets.QMainWindow):
         for s in sorted(self.project.sensors, key=lambda s: s.order):
             r = t.rowCount()
             t.insertRow(r)
-            cells = [s.order, s.id, s.name, s.position_mm[0], s.position_mm[1], s.position_mm[2],
-                     s.tolerance_mm, s.status.value, s.origin.value]
-            for c, v in enumerate(cells):
+            for c, v in enumerate([s.order, s.id, s.name, s.position_mm[0], s.position_mm[1],
+                                   s.position_mm[2], s.tolerance_mm]):
                 it = QtWidgets.QTableWidgetItem(str(v))
-                if c in (0, 7, 8):
+                if c == 0:
                     _noedit(it)
                 t.setItem(r, c, it)
+            t.setCellWidget(r, 7, self._combo(_STATUS_OPTS, s.status.value,
+                                              lambda text, o=s: self._set_sensor_status(o, text)))
+            t.setCellWidget(r, 8, self._combo(_ORIGIN_OPTS, s.origin.value,
+                                              lambda text, o=s: self._set_sensor_origin(o, text)))
 
     def _fill_tag_table(self):
         t = self.tag_table
@@ -228,14 +244,13 @@ class MainWindow(QtWidgets.QMainWindow):
         for m in self.project.markers:
             r = t.rowCount()
             t.insertRow(r)
+            for c, v in enumerate([m.id, m.size_mm, m.position_mm[0], m.position_mm[1], m.position_mm[2]]):
+                t.setItem(r, c, QtWidgets.QTableWidgetItem(str(v)))
             plane = geo.plane_of_point(m.position_mm, self.project.dimensions_mm, tol=2.0)
-            cells = [m.id, m.size_mm, m.position_mm[0], m.position_mm[1], m.position_mm[2],
-                     plane.value if plane else "-", m.origin.value]
-            for c, v in enumerate(cells):
-                it = QtWidgets.QTableWidgetItem(str(v))
-                if c in (5, 6):
-                    _noedit(it)
-                t.setItem(r, c, it)
+            t.setCellWidget(r, 5, self._combo(_PLANE_OPTS, plane.value if plane else _PLANE_OPTS[0],
+                                              lambda text, o=m: self._set_tag_plane(o, text)))
+            t.setCellWidget(r, 6, self._combo(_ORIGIN_OPTS, m.origin.value,
+                                              lambda text, o=m: self._set_tag_origin(o, text)))
 
     def _fill_model_table(self):
         t = self.model_table
@@ -243,13 +258,16 @@ class MainWindow(QtWidgets.QMainWindow):
         for m in self.project.stl_models:
             r = t.rowCount()
             t.insertRow(r)
-            cells = [m.id, m.file_name, m.scale_percent,
-                     m.offset_mm[0], m.offset_mm[1], m.offset_mm[2], "yes" if m.visible else "no"]
-            for c, v in enumerate(cells):
+            for c, v in enumerate([m.id, m.file_name, m.scale_percent,
+                                   m.offset_mm[0], m.offset_mm[1], m.offset_mm[2]]):
                 it = QtWidgets.QTableWidgetItem(str(v))
                 if c in (0, 1):
                     _noedit(it)
                 t.setItem(r, c, it)
+            t.setCellWidget(r, 6, self._combo(_ROLE_OPTS, m.role,
+                                              lambda text, o=m: self._set_model_role(o, text)))
+            t.setCellWidget(r, 7, self._combo(_YESNO_OPTS, "yes" if m.visible else "no",
+                                              lambda text, o=m: self._set_model_visible(o, text)))
 
     # --- table edits ------------------------------------------------------
 
@@ -297,7 +315,11 @@ class MainWindow(QtWidgets.QMainWindow):
         plane = geo.plane_of_point(m.position_mm, self.project.dimensions_mm, tol=2.0)
         if plane is not None:
             m.rotation_deg = list(geo.tag_rotation_for(plane))
-        self._load_tables()
+            cb = self.tag_table.cellWidget(item.row(), 5)
+            if cb is not None:
+                self._loading = True
+                cb.setCurrentText(plane.value)
+                self._loading = False
         self.scene.redraw()
 
     def _on_model_changed(self, item):
@@ -313,12 +335,121 @@ class MainWindow(QtWidgets.QMainWindow):
                 m.scale_percent = max(1, int(float(txt)))
             elif col in (3, 4, 5):
                 m.offset_mm[col - 3] = int(float(txt))
-            elif col == 6:
-                m.visible = txt.lower() in ("yes", "ja", "true", "1")
         except ValueError:
             self._load_tables()
             return
         self.scene.redraw()
+
+    # --- dropdowns & auto-align ------------------------------------------
+
+    def _combo(self, options, value, on_change):
+        cb = QtWidgets.QComboBox()
+        cb.addItems(options)
+        if str(value) in options:
+            cb.setCurrentText(str(value))
+        cb.currentTextChanged.connect(on_change)
+        return cb
+
+    def _set_sensor_status(self, s, text):
+        if self._loading:
+            return
+        try:
+            s.status = SensorStatus(text)
+        except ValueError:
+            return
+        self.scene.redraw()
+
+    def _set_sensor_origin(self, s, text):
+        if self._loading:
+            return
+        try:
+            s.origin = PlacementOrigin(text)
+        except ValueError:
+            return
+
+    def _set_tag_origin(self, m, text):
+        if self._loading:
+            return
+        try:
+            m.origin = PlacementOrigin(text)
+        except ValueError:
+            return
+
+    def _set_tag_plane(self, m, text):
+        if self._loading:
+            return
+        try:
+            plane = geo.TagPlane(text)
+        except ValueError:
+            return
+        d = self.project.dimensions_mm
+        u_max, v_max = geo.plane_uv_extent(plane, d)
+        pos = geo.tag_position_for(plane, u_max / 2, v_max / 2, d, m.size_mm)
+        m.position_mm = [int(round(x)) for x in pos]
+        m.rotation_deg = list(geo.tag_rotation_for(plane))
+        row = self.project.markers.index(m)
+        self._loading = True
+        for col, val in zip((2, 3, 4), m.position_mm):
+            it = self.tag_table.item(row, col)
+            if it is not None:
+                it.setText(str(val))
+        self._loading = False
+        self.scene.redraw()
+
+    def _set_model_role(self, m, text):
+        if self._loading:
+            return
+        m.role = text
+
+    def _set_model_visible(self, m, text):
+        if self._loading:
+            return
+        m.visible = (text == "yes")
+        self.scene.redraw()
+
+    def _model_union_bounds(self):
+        mn = mx = None
+        for m in self.project.stl_models:
+            pv_mesh = self.scene.meshes.get(m.file_name)
+            if pv_mesh is None:
+                continue
+            b = pv_mesh.bounds
+            lo = np.array([b[0], b[2], b[4]])
+            hi = np.array([b[1], b[3], b[5]])
+            mn = lo if mn is None else np.minimum(mn, lo)
+            mx = hi if mx is None else np.maximum(mx, hi)
+        return mn, mx
+
+    def _fit_model_to_box(self):
+        mn, mx = self._model_union_bounds()
+        if mn is None:
+            self.statusBar().showMessage("No loaded model to align.")
+            return
+        size = np.maximum(mx - mn, 1e-6)
+        d = np.array(self.project.dimensions_mm, dtype=float)
+        scale = float(np.min(d / size))
+        pct = max(1, int(round(scale * 100)))
+        center = (mn + mx) / 2.0 * scale
+        off = d / 2.0 - center
+        for m in self.project.stl_models:
+            m.scale_percent = pct
+            m.offset_mm = [int(round(off[0])), int(round(off[1])), int(round(off[2]))]
+        self.refresh_all()
+        self.statusBar().showMessage(f"Aligned model to box (scale {pct}%, centered).")
+
+    def _center_model_in_box(self):
+        mn, mx = self._model_union_bounds()
+        if mn is None:
+            self.statusBar().showMessage("No loaded model to align.")
+            return
+        s = self.project.stl_models[0].scale_percent / 100.0 if self.project.stl_models else 1.0
+        center = (mn + mx) / 2.0 * s
+        d = np.array(self.project.dimensions_mm, dtype=float)
+        off = d / 2.0 - center
+        for m in self.project.stl_models:
+            m.offset_mm = [int(round(off[0])), int(round(off[1])), int(round(off[2]))]
+        self.refresh_all()
+        self.statusBar().showMessage("Centered model in box.")
 
     # --- actions ----------------------------------------------------------
 
@@ -403,7 +534,7 @@ class MainWindow(QtWidgets.QMainWindow):
         self.statusBar().showMessage(f"Saved {path}")
 
     def import_model(self):
-        path, _ = QtWidgets.QFileDialog.getOpenFileName(self, "Import 3D model", "", "3D models (*.stl *.obj *.ply)")
+        path, _ = QtWidgets.QFileDialog.getOpenFileName(self, "Import 3D model", "", _MODEL_FILTER)
         if not path:
             return
         try:
