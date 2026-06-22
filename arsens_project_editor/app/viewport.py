@@ -42,6 +42,11 @@ class TransformerScene:
         p.clear()
         if self.project is None:
             return
+        # A multi-light rig instead of the flat default headlight, so surface relief is shaded.
+        try:
+            p.enable_lightkit()
+        except Exception:
+            pass
         proj = self.project
         dims = [float(d) for d in proj.dimensions_mm]
         dx, dy, dz = dims
@@ -58,7 +63,13 @@ class TransformerScene:
                                        model.rotation_deg, model.offset_mm)
             shown = mesh.copy()
             shown.points = pts
-            p.add_mesh(shown, color=_MODEL_COLOR, smooth_shading=True)
+            try:
+                # Recompute normals on the transformed surface so lighting is correct.
+                shown.compute_normals(cell_normals=False, point_normals=True, inplace=True)
+            except Exception:
+                pass
+            p.add_mesh(shown, color=_MODEL_COLOR, smooth_shading=True,
+                       specular=0.4, specular_power=15, ambient=0.22, diffuse=0.78)
 
         for tag in proj.markers:
             plane = geo.plane_of_point(tag.position_mm, dims, tol=2.0)
@@ -89,6 +100,11 @@ class TransformerScene:
             pass
         try:
             p.add_axes()
+        except Exception:
+            pass
+        # Eye-dome lighting darkens depth discontinuities -> raised/recessed features become visible.
+        try:
+            p.enable_eye_dome_lighting()
         except Exception:
             pass
         try:
