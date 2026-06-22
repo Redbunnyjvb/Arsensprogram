@@ -109,15 +109,12 @@ class MainWindow(QtWidgets.QMainWindow):
         apply_btn = QtWidgets.QPushButton("Apply project settings")
         apply_btn.clicked.connect(self._apply_project_settings)
         form.addRow(apply_btn)
-        fit_btn = QtWidgets.QPushButton("Auto-align model to box (fit)")
-        fit_btn.clicked.connect(self._fit_model_to_box)
-        form.addRow(fit_btn)
+        align_btn = QtWidgets.QPushButton("Align model to tank")
+        align_btn.clicked.connect(self._align_to_tank)
+        form.addRow(align_btn)
         center_btn = QtWidgets.QPushButton("Center model in box")
         center_btn.clicked.connect(self._center_model_in_box)
         form.addRow(center_btn)
-        box_btn = QtWidgets.QPushButton("Box = model bounding box")
-        box_btn.clicked.connect(self._box_from_model)
-        form.addRow(box_btn)
         form.addRow(QtWidgets.QLabel(" "))
         add_s = QtWidgets.QPushButton("Add sensor (+1 id)")
         add_s.clicked.connect(self.add_sensor)
@@ -420,22 +417,46 @@ class MainWindow(QtWidgets.QMainWindow):
             mx = hi if mx is None else np.maximum(mx, hi)
         return mn, mx
 
-    def _fit_model_to_box(self):
-        mn, mx = self._model_union_bounds()
-        if mn is None:
+    def _align_to_tank(self):
+        """Align like the ARsens app (autoAlignAssembly): pick the tank part (role TANK, else a part
+        named 'tank', else the largest cover, else the largest part), set the box to the tank's
+        bounding box, and offset every part so the tank's min corner sits at the origin
+        (front-left-bottom). NO rescaling — the STL is already in millimetres."""
+        loaded = [(m, self.scene.meshes.get(m.file_name)) for m in self.project.stl_models]
+        loaded = [(m, pv) for m, pv in loaded if pv is not None]
+        if not loaded:
             self.statusBar().showMessage("No loaded model to align.")
             return
-        size = np.maximum(mx - mn, 1e-6)
-        d = np.array(self.project.dimensions_mm, dtype=float)
-        scale = float(np.min(d / size))
-        pct = max(1, int(round(scale * 100)))
-        center = (mn + mx) / 2.0 * scale
-        off = d / 2.0 - center
-        for m in self.project.stl_models:
-            m.scale_percent = pct
-            m.offset_mm = [int(round(off[0])), int(round(off[1])), int(round(off[2]))]
+
+        def vol(pv):
+            b = pv.bounds
+            return max(b[1] - b[0], 0.0) * max(b[3] - b[2], 0.0) * max(b[5] - b[4], 0.0)
+
+        tanks = [(m, pv) for m, pv in loaded if m.role == "TANK"]
+        named = next(((m, pv) for m, pv in loaded if "tank" in (m.name or "").lower()), None)
+        covers = [(m, pv) for m, pv in loaded if m.role == "COVER"]
+        if tanks:
+            tank = max(tanks, key=lambda t: vol(t[1]))
+        elif named is not None:
+            tank = named
+        elif covers:
+            tank = max(covers, key=lambda t: vol(t[1]))
+        else:
+            tank = max(loaded, key=lambda t: vol(t[1]))
+
+        tm, tpv = tank
+        b = tpv.bounds
+        s = tm.scale_percent / 100.0
+        tank_min = [b[0], b[2], b[4]]
+        tank_size = [b[1] - b[0], b[3] - b[2], b[5] - b[4]]
+        dims = [max(1, int(round(v * s))) for v in tank_size]
+        offset = [int(round(-tank_min[i] * s)) for i in range(3)]
+        self.project.dimensions_mm = dims
+        for m in self.project.stl_models:  # shared frame: shift all parts with the tank
+            m.offset_mm = list(offset)
         self.refresh_all()
-        self.statusBar().showMessage(f"Aligned model to box (scale {pct}%, centered).")
+        self.statusBar().showMessage(
+            f"Aligned to tank '{tm.name or tm.file_name}': box {dims[0]}x{dims[1]}x{dims[2]} mm (no rescaling).")
 
     def _center_model_in_box(self):
         mn, mx = self._model_union_bounds()
@@ -599,28 +620,6 @@ class MainWindow(QtWidgets.QMainWindow):
             b = pv_mesh.bounds
             out[name] = (b[1] - b[0], b[3] - b[2], b[5] - b[4])
         return out
-
-    def _box_from_model(self):
-        mn = mx = None
-        for m in self.project.stl_models:
-            pv_mesh = self.scene.meshes.get(m.file_name)
-            if pv_mesh is None:
-                continue
-            b = pv_mesh.bounds
-            s = m.scale_percent / 100.0
-            lo = np.array([b[0], b[2], b[4]]) * s
-            hi = np.array([b[1], b[3], b[5]]) * s
-            mn = lo if mn is None else np.minimum(mn, lo)
-            mx = hi if mx is None else np.maximum(mx, hi)
-        if mn is None:
-            self.statusBar().showMessage("No loaded model to size the box from.")
-            return
-        span = [max(1, int(round(v))) for v in (mx - mn)]
-        self.project.dimensions_mm = span
-        for m in self.project.stl_models:
-            m.offset_mm = [int(round(-mn[0])), int(round(-mn[1])), int(round(-mn[2]))]
-        self.refresh_all()
-        self.statusBar().showMessage(f"Box sized to model: {span[0]} x {span[1]} x {span[2]} mm")
 
     def _toggle_pick(self, checked):
         if checked:
