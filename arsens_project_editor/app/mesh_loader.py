@@ -34,6 +34,16 @@ def to_pyvista(mesh):
     return pv.wrap(mesh)
 
 
+def core_bounds(mesh) -> np.ndarray:
+    """The "wall box" [minx,miny,minz,maxx,maxy,maxz] of a trimesh: the dominant solid extent,
+    ignoring ribs/radiators/protrusions. Wraps :func:`geometry.core_bounds_from_faces` with the
+    mesh's per-face centroids, normals and areas. Cache the 6 floats at import — it's far lighter
+    than keeping the (possibly 100 MB) mesh around."""
+    from . import geometry as geo
+    return geo.core_bounds_from_faces(
+        mesh.triangles_center, mesh.face_normals, mesh.area_faces, np.asarray(mesh.bounds).reshape(6))
+
+
 def raycast(mesh, origin, direction):
     """First surface hit of a ray, or None."""
     locations, _, _ = mesh.ray.intersects_location([np.asarray(origin, float)],

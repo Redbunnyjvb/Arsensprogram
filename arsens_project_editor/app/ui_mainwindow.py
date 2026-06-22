@@ -35,6 +35,7 @@ class MainWindow(QtWidgets.QMainWindow):
         self.resize(1320, 880)
         self.project = Project(project_name="New project")
         self.model_sources: dict[str, str] = {}
+        self.core_bounds: dict[str, np.ndarray] = {}  # file_name -> wall box (model-space)
         self._loading = False
 
         self.interactor = QtInteractor(self)
@@ -82,6 +83,16 @@ class MainWindow(QtWidgets.QMainWindow):
         self.pick_action.setCheckable(True)
         self.pick_action.toggled.connect(self._toggle_pick)
         tb.addAction(self.pick_action)
+        self.pick_tag_action = QtGui.QAction("Click-place tag", self)
+        self.pick_tag_action.setCheckable(True)
+        self.pick_tag_action.toggled.connect(self._toggle_pick_tag)
+        tb.addAction(self.pick_tag_action)
+        tb.addSeparator()
+        self.labels_action = QtGui.QAction("Labels", self)
+        self.labels_action.setCheckable(True)
+        self.labels_action.setChecked(True)
+        self.labels_action.toggled.connect(self._toggle_orientation_labels)
+        tb.addAction(self.labels_action)
 
     def _build_left_dock(self):
         dock = QtWidgets.QDockWidget("Project", self)
@@ -118,7 +129,7 @@ class MainWindow(QtWidgets.QMainWindow):
         form.addRow(QtWidgets.QLabel(" "))
         add_s = QtWidgets.QPushButton("Add sensor (+1 id)")
         add_s.clicked.connect(self.add_sensor)
-        add_t = QtWidgets.QPushButton("Add tag (Front)")
+        add_t = QtWidgets.QPushButton("Add tag")
         add_t.clicked.connect(self.add_tag)
         form.addRow(add_s)
         form.addRow(add_t)
@@ -418,45 +429,50 @@ class MainWindow(QtWidgets.QMainWindow):
         return mn, mx
 
     def _align_to_tank(self):
-        """Align like the ARsens app (autoAlignAssembly): pick the tank part (role TANK, else a part
-        named 'tank', else the largest cover, else the largest part), set the box to the tank's
-        bounding box, and offset every part so the tank's min corner sits at the origin
-        (front-left-bottom). NO rescaling — the STL is already in millimetres."""
-        loaded = [(m, self.scene.meshes.get(m.file_name)) for m in self.project.stl_models]
-        loaded = [(m, pv) for m, pv in loaded if pv is not None]
-        if not loaded:
+        """Align the assembly from the TANK reference, matching the ARsens app (buildTankFrame /
+        placeInTankFrame). Each part's WALL box (``core_bounds``) — not its full bbox — drives the
+        fit, so ribbing/radiators/protrusions on the cover don't inflate the box or lift the cover:
+        the box becomes the tank wall box (height extended to the cover top), the cover flange rests
+        on the tank rim, interior parts sit on the floor. NO rescaling — the STL is in millimetres."""
+        parts = []
+        for m in self.project.stl_models:
+            pv_mesh = self.scene.meshes.get(m.file_name)
+            if pv_mesh is None:
+                continue
+            b = pv_mesh.bounds  # (xmin, xmax, ymin, ymax, zmin, zmax)
+            full = (b[0], b[2], b[4], b[1], b[3], b[5])
+            cached = self.core_bounds.get(m.file_name)
+            core = tuple(float(v) for v in cached) if cached is not None else full
+            role = str(m.role).upper()
+            if role not in geo.WIRE_ROLES:
+                role = geo.ROLE_OTHER
+            parts.append(geo.PartGeom(
+                id=m.id, role=role, name=m.name, scale_percent=m.scale_percent,
+                full_bounds=full, core_bounds=core,
+                rotation_deg=tuple(m.rotation_deg), offset_mm=tuple(m.offset_mm)))
+        if not parts:
             self.statusBar().showMessage("No loaded model to align.")
             return
-
-        def vol(pv):
-            b = pv.bounds
-            return max(b[1] - b[0], 0.0) * max(b[3] - b[2], 0.0) * max(b[5] - b[4], 0.0)
-
-        tanks = [(m, pv) for m, pv in loaded if m.role == "TANK"]
-        named = next(((m, pv) for m, pv in loaded if "tank" in (m.name or "").lower()), None)
-        covers = [(m, pv) for m, pv in loaded if m.role == "COVER"]
-        if tanks:
-            tank = max(tanks, key=lambda t: vol(t[1]))
-        elif named is not None:
-            tank = named
-        elif covers:
-            tank = max(covers, key=lambda t: vol(t[1]))
-        else:
-            tank = max(loaded, key=lambda t: vol(t[1]))
-
-        tm, tpv = tank
-        b = tpv.bounds
-        s = tm.scale_percent / 100.0
-        tank_min = [b[0], b[2], b[4]]
-        tank_size = [b[1] - b[0], b[3] - b[2], b[5] - b[4]]
-        dims = [max(1, int(round(v * s))) for v in tank_size]
-        offset = [int(round(-tank_min[i] * s)) for i in range(3)]
-        self.project.dimensions_mm = dims
-        for m in self.project.stl_models:  # shared frame: shift all parts with the tank
-            m.offset_mm = list(offset)
+        placement = geo.solve_assembly_alignment(
+            parts, adopt_dims=True, dims_locked=self.project.dimensions_locked,
+            current_dims=self.project.dimensions_mm)
+        if placement is None:
+            self.statusBar().showMessage("No loaded model to align.")
+            return
+        self.project.dimensions_mm = list(placement.dims)
+        for m in self.project.stl_models:
+            off = placement.offsets.get(m.id)
+            if off is not None:
+                m.offset_mm = list(off)
         self.refresh_all()
+        tank = next((m for m in self.project.stl_models if m.id == placement.tank_id), None)
+        d = placement.dims
+        manual = [m.name or m.id for m in self.project.stl_models if m.id in placement.manual_ids]
+        manual_note = f" · place by hand: {', '.join(manual)}" if manual else ""
+        lock_note = " (dims locked)" if self.project.dimensions_locked else ""
         self.statusBar().showMessage(
-            f"Aligned to tank '{tm.name or tm.file_name}': box {dims[0]}x{dims[1]}x{dims[2]} mm (no rescaling).")
+            f"Aligned to tank '{(tank.name if tank else '?')}': "
+            f"box {d[0]}x{d[1]}x{d[2]} mm{lock_note}{manual_note}.")
 
     def _center_model_in_box(self):
         mn, mx = self._model_union_bounds()
@@ -519,6 +535,7 @@ class MainWindow(QtWidgets.QMainWindow):
                 m = self.project.stl_models[r]
                 self.scene.remove_mesh(m.file_name)
                 self.model_sources.pop(m.file_name, None)
+                self.core_bounds.pop(m.file_name, None)
                 del self.project.stl_models[r]
         self.refresh_all()
 
@@ -530,6 +547,7 @@ class MainWindow(QtWidgets.QMainWindow):
     def new_project(self):
         self.project = Project(project_name="New project")
         self.model_sources.clear()
+        self.core_bounds.clear()
         self.scene.meshes.clear()
         self.refresh_all()
 
@@ -544,6 +562,7 @@ class MainWindow(QtWidgets.QMainWindow):
             return
         self.scene.meshes.clear()
         self.model_sources.clear()
+        self.core_bounds.clear()
         self.refresh_all()
         self.statusBar().showMessage(f"Opened {path} (re-import models to see geometry)")
 
@@ -559,18 +578,22 @@ class MainWindow(QtWidgets.QMainWindow):
         if not path:
             return
         try:
-            pv_mesh = mesh_loader.to_pyvista(mesh_loader.load_mesh(path))
+            tm = mesh_loader.load_mesh(path)
+            pv_mesh = mesh_loader.to_pyvista(tm)
+            core = mesh_loader.core_bounds(tm)  # wall box, cached now (mesh itself is dropped)
         except Exception as exc:  # noqa: BLE001
             QtWidgets.QMessageBox.critical(self, "Import failed", str(exc))
             return
         name = Path(path).name
+        role = geo.detect_role_from_name(Path(path).stem)
         self.model_sources[name] = path
+        self.core_bounds[name] = core
         if not any(m.file_name == name for m in self.project.stl_models):
-            self.project.stl_models.append(StlModel(id=name, name=Path(path).stem, file_name=name, role="body"))
+            self.project.stl_models.append(StlModel(id=name, name=Path(path).stem, file_name=name, role=role))
         self.project.model_file = name
         self.scene.set_mesh(name, pv_mesh)
         self.refresh_all()
-        self.statusBar().showMessage(f"Loaded {name}")
+        self.statusBar().showMessage(f"Loaded {name} ({role})")
 
     def import_excel(self):
         path, _ = QtWidgets.QFileDialog.getOpenFileName(self, "Import Excel", "", "Excel (*.xlsx)")
@@ -621,20 +644,62 @@ class MainWindow(QtWidgets.QMainWindow):
             out[name] = (b[1] - b[0], b[3] - b[2], b[5] - b[4])
         return out
 
+    def _enable_surface_pick(self, callback, msg, owner):
+        self._disable_pick()  # ensure a single active picker (the two modes are exclusive)
+        try:
+            self.interactor.enable_surface_point_picking(
+                callback=callback, show_message=True, left_clicking=True, show_point=True)
+            self.statusBar().showMessage(msg)
+        except Exception as exc:  # noqa: BLE001
+            self.statusBar().showMessage(f"Picking unavailable: {exc}")
+            owner.setChecked(False)
+
+    def _disable_pick(self):
+        try:
+            self.interactor.disable_picking()
+        except Exception:
+            pass
+
+    def _uncheck_silently(self, action):
+        action.blockSignals(True)
+        action.setChecked(False)
+        action.blockSignals(False)
+
     def _toggle_pick(self, checked):
+        # Sensor and tag click-place are mutually exclusive (one VTK picker at a time).
         if checked:
-            try:
-                self.interactor.enable_surface_point_picking(
-                    callback=self._on_pick, show_message=True, left_clicking=True, show_point=True)
-                self.statusBar().showMessage("Click a surface to drop a sensor.")
-            except Exception as exc:  # noqa: BLE001
-                self.statusBar().showMessage(f"Picking unavailable: {exc}")
-                self.pick_action.setChecked(False)
+            self._uncheck_silently(self.pick_tag_action)
+            self._enable_surface_pick(self._on_pick, "Click a surface to drop a sensor.", self.pick_action)
         else:
-            try:
-                self.interactor.disable_picking()
-            except Exception:
-                pass
+            self._disable_pick()
+
+    def _toggle_pick_tag(self, checked):
+        if checked:
+            self._uncheck_silently(self.pick_action)
+            self._enable_surface_pick(
+                self._on_tag_pick, "Click a wall to drop a tag (plane auto-detected).", self.pick_tag_action)
+        else:
+            self._disable_pick()
+
+    def _toggle_orientation_labels(self, checked):
+        self.scene.show_orientation_labels = checked
+        self.scene.redraw()
+
+    def _on_tag_pick(self, point, *_args):
+        if point is None:
+            return
+        d = self.project.dimensions_mm
+        plane = geo.nearest_plane(point, d)
+        size = 100
+        u, v = geo.tag_uv_of_point(plane, point)
+        pos = geo.tag_position_for(plane, u, v, d, size)
+        tid = max((m.id for m in self.project.markers), default=0) + 1
+        self.project.markers.append(Marker(
+            id=tid, position_mm=[int(round(x)) for x in pos], size_mm=size,
+            rotation_deg=list(geo.tag_rotation_for(plane))))
+        self.refresh_all()
+        self.statusBar().showMessage(
+            f"Placed tag #{tid} on {plane.value} at {[int(round(x)) for x in pos]} mm")
 
     def _on_pick(self, point, *_args):
         if point is None:
