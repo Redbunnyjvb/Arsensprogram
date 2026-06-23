@@ -1,0 +1,174 @@
+{
+  "project_name": "New project",
+  "model_file": "1512_Tank.stl",
+  "dimensions_mm": [
+    7865,
+    2877,
+    4413
+  ],
+  "dimensions_locked": false,
+  "coordinate_frame": {
+    "origin_corner": "front_left_bottom",
+    "flip_x": false,
+    "flip_y": false,
+    "flip_z": false
+  },
+  "sensors": [
+    {
+      "order": 1,
+      "id": "S001",
+      "name": "Sensor",
+      "side": "veld",
+      "position_mm": [
+        4337,
+        1498,
+        4416
+      ],
+      "normal": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "tolerance_mm": 50,
+      "instruction": "",
+      "status": "pending",
+      "origin": "prepared"
+    },
+    {
+      "order": 2,
+      "id": "S002",
+      "name": "Sensor",
+      "side": "veld",
+      "position_mm": [
+        5130,
+        -50,
+        4413
+      ],
+      "normal": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "tolerance_mm": 50,
+      "instruction": "",
+      "status": "pending",
+      "origin": "prepared"
+    },
+    {
+      "order": 3,
+      "id": "S003",
+      "name": "Sensor",
+      "side": "veld",
+      "position_mm": [
+        4315,
+        1143,
+        4519
+      ],
+      "normal": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "tolerance_mm": 50,
+      "instruction": "",
+      "status": "pending",
+      "origin": "prepared"
+    },
+    {
+      "order": 4,
+      "id": "S004",
+      "name": "Sensor",
+      "side": "veld",
+      "position_mm": [
+        4261,
+        2030,
+        4548
+      ],
+      "normal": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "tolerance_mm": 50,
+      "instruction": "",
+      "status": "pending",
+      "origin": "prepared"
+    }
+  ],
+  "markers": [
+    {
+      "id": 1,
+      "type": "apriltag",
+      "size_mm": 100,
+      "position_mm": [
+        4158,
+        1620,
+        4413
+      ],
+      "rotation_deg": [
+        -90.0,
+        0.0,
+        0.0
+      ],
+      "active": true,
+      "pose_weight": 1.0,
+      "origin": "prepared"
+    },
+    {
+      "id": 2,
+      "type": "apriltag",
+      "size_mm": 100,
+      "position_mm": [
+        4372,
+        1791,
+        4413
+      ],
+      "rotation_deg": [
+        -90.0,
+        0.0,
+        0.0
+      ],
+      "active": true,
+      "pose_weight": 1.0,
+      "origin": "prepared"
+    }
+  ],
+  "stl_models": [
+    {
+      "id": "1512_Cover.stl",
+      "name": "1512_Cover",
+      "file_name": "1512_Cover.stl",
+      "scale_percent": 100,
+      "offset_mm": [
+        3932,
+        1439,
+        4398
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "visible": true,
+      "role": "COVER"
+    },
+    {
+      "id": "1512_Tank.stl",
+      "name": "1512_Tank",
+      "file_name": "1512_Tank.stl",
+      "scale_percent": 100,
+      "offset_mm": [
+        3932,
+        1439,
+        15
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "visible": true,
+      "role": "TANK"
+    }
+  ]
+}

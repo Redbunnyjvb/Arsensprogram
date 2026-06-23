@@ -1,0 +1,335 @@
+{
+  "project_name": "New project",
+  "model_file": "transformer_model.glb",
+  "dimensions_mm": [
+    1000,
+    1000,
+    1000
+  ],
+  "dimensions_locked": false,
+  "coordinate_frame": {
+    "origin_corner": "front_left_bottom",
+    "flip_x": false,
+    "flip_y": false,
+    "flip_z": false
+  },
+  "sensors": [
+    {
+      "order": 1,
+      "id": "S001",
+      "name": "Sensor",
+      "side": "veld",
+      "position_mm": [
+        1000,
+        800,
+        700
+      ],
+      "normal": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "tolerance_mm": 50,
+      "instruction": "",
+      "status": "pending",
+      "origin": "prepared"
+    },
+    {
+      "order": 2,
+      "id": "S002",
+      "name": "Sensor",
+      "side": "veld",
+      "position_mm": [
+        1000,
+        500,
+        700
+      ],
+      "normal": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "tolerance_mm": 50,
+      "instruction": "",
+      "status": "pending",
+      "origin": "prepared"
+    },
+    {
+      "order": 3,
+      "id": "S003",
+      "name": "Sensor",
+      "side": "veld",
+      "position_mm": [
+        1000,
+        200,
+        700
+      ],
+      "normal": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "tolerance_mm": 50,
+      "instruction": "",
+      "status": "pending",
+      "origin": "prepared"
+    },
+    {
+      "order": 4,
+      "id": "S004",
+      "name": "Sensor",
+      "side": "veld",
+      "position_mm": [
+        300,
+        700,
+        1000
+      ],
+      "normal": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "tolerance_mm": 50,
+      "instruction": "",
+      "status": "pending",
+      "origin": "prepared"
+    },
+    {
+      "order": 5,
+      "id": "S005",
+      "name": "Sensor",
+      "side": "veld",
+      "position_mm": [
+        700,
+        700,
+        1000
+      ],
+      "normal": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "tolerance_mm": 50,
+      "instruction": "",
+      "status": "pending",
+      "origin": "prepared"
+    },
+    {
+      "order": 6,
+      "id": "S006",
+      "name": "Sensor",
+      "side": "veld",
+      "position_mm": [
+        300,
+        300,
+        1000
+      ],
+      "normal": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "tolerance_mm": 50,
+      "instruction": "",
+      "status": "pending",
+      "origin": "prepared"
+    },
+    {
+      "order": 7,
+      "id": "S007",
+      "name": "Sensor",
+      "side": "veld",
+      "position_mm": [
+        700,
+        300,
+        1000
+      ],
+      "normal": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "tolerance_mm": 50,
+      "instruction": "",
+      "status": "pending",
+      "origin": "prepared"
+    },
+    {
+      "order": 8,
+      "id": "S008",
+      "name": "Sensor",
+      "side": "veld",
+      "position_mm": [
+        1000,
+        225,
+        900
+      ],
+      "normal": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "tolerance_mm": 50,
+      "instruction": "",
+      "status": "pending",
+      "origin": "prepared"
+    },
+    {
+      "order": 9,
+      "id": "S009",
+      "name": "Sensor",
+      "side": "veld",
+      "position_mm": [
+        1000,
+        200,
+        875
+      ],
+      "normal": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "tolerance_mm": 50,
+      "instruction": "",
+      "status": "pending",
+      "origin": "prepared"
+    },
+    {
+      "order": 10,
+      "id": "S010",
+      "name": "Sensor",
+      "side": "veld",
+      "position_mm": [
+        1000,
+        175,
+        850
+      ],
+      "normal": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "tolerance_mm": 50,
+      "instruction": "",
+      "status": "pending",
+      "origin": "prepared"
+    },
+    {
+      "order": 11,
+      "id": "S011",
+      "name": "Sensor",
+      "side": "veld",
+      "position_mm": [
+        800,
+        0,
+        900
+      ],
+      "normal": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "tolerance_mm": 50,
+      "instruction": "",
+      "status": "pending",
+      "origin": "prepared"
+    },
+    {
+      "order": 12,
+      "id": "S012",
+      "name": "Sensor",
+      "side": "veld",
+      "position_mm": [
+        700,
+        0,
+        800
+      ],
+      "normal": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "tolerance_mm": 50,
+      "instruction": "",
+      "status": "pending",
+      "origin": "prepared"
+    },
+    {
+      "order": 13,
+      "id": "S013",
+      "name": "Sensor",
+      "side": "veld",
+      "position_mm": [
+        600,
+        0,
+        700
+      ],
+      "normal": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "tolerance_mm": 50,
+      "instruction": "",
+      "status": "pending",
+      "origin": "prepared"
+    }
+  ],
+  "markers": [
+    {
+      "id": 1,
+      "type": "apriltag",
+      "size_mm": 100,
+      "position_mm": [
+        500,
+        500,
+        1000
+      ],
+      "rotation_deg": [
+        -90.0,
+        0.0,
+        0.0
+      ],
+      "active": true,
+      "pose_weight": 1.0,
+      "origin": "prepared"
+    },
+    {
+      "id": 2,
+      "type": "apriltag",
+      "size_mm": 100,
+      "position_mm": [
+        50,
+        0,
+        50
+      ],
+      "rotation_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "active": true,
+      "pose_weight": 1.0,
+      "origin": "prepared"
+    },
+    {
+      "id": 3,
+      "type": "apriltag",
+      "size_mm": 100,
+      "position_mm": [
+        1000,
+        500,
+        500
+      ],
+      "rotation_deg": [
+        0.0,
+        0.0,
+        90.0
+      ],
+      "active": true,
+      "pose_weight": 1.0,
+      "origin": "prepared"
+    }
+  ],
+  "stl_models": []
+}

@@ -490,3 +490,72 @@ def solve_assembly_alignment(parts, *, adopt_dims: bool = True, dims_locked: boo
         offsets[p.id] = [off_x, off_y, off_z]
 
     return AssemblyPlacement(dims=dims, offsets=offsets, manual_ids=manual_ids, tank_id=tank.id)
+
+
+# --- measure & drag-in-plane helpers (pure) ---------------------------------
+
+def ray_plane_intersection(near, far, plane_point, plane_normal) -> Optional[Vec3]:
+    """Intersection of the ray ``near``->``far`` with the plane (``plane_point``, ``plane_normal``).
+    Returns ``None`` when the ray is parallel to the plane. Used by drag-in-plane: the cursor ray
+    (unprojected near/far points) is intersected with the dragged item's constraint plane."""
+    near = np.asarray(near, dtype=float)
+    far = np.asarray(far, dtype=float)
+    n = np.asarray(plane_normal, dtype=float)
+    d = far - near
+    denom = float(d @ n)
+    if abs(denom) < 1e-9:
+        return None
+    t = float((np.asarray(plane_point, dtype=float) - near) @ n) / denom
+    return near + t * d
+
+
+def dominant_axis(direction) -> int:
+    """Index (0=X, 1=Y, 2=Z) of the axis most aligned with ``direction`` — e.g. the camera's
+    projection direction, giving the 'depth' axis to drop for an in-view 2D measurement."""
+    return int(np.argmax(np.abs(np.asarray(direction, dtype=float))))
+
+
+def inplane_deltas(p1, p2, drop_axis: int) -> tuple[float, float, float, tuple[int, int]]:
+    """In-view 2D measurement between ``p1`` and ``p2`` with ``drop_axis`` (the depth axis) removed.
+
+    Returns ``(d_a, d_b, diagonal, (axis_a, axis_b))`` where ``axis_a < axis_b`` are the two kept
+    axis indices, ``d_a``/``d_b`` are the signed deltas along them and ``diagonal = hypot(d_a, d_b)``.
+    """
+    a, b = [i for i in range(3) if i != int(drop_axis)]
+    p1 = np.asarray(p1, dtype=float)
+    p2 = np.asarray(p2, dtype=float)
+    d_a = float(p2[a] - p1[a])
+    d_b = float(p2[b] - p1[b])
+    return d_a, d_b, float(np.hypot(d_a, d_b)), (a, b)
+
+
+def nearest_index(point, points, max_dist: float) -> Optional[int]:
+    """Index of the entry in ``points`` closest to ``point`` within ``max_dist`` mm, else ``None``.
+    Lets the measure tool snap a click to the nearest sensor/tag."""
+    pts = np.asarray(points, dtype=float).reshape(-1, 3)
+    if pts.shape[0] == 0:
+        return None
+    d = np.linalg.norm(pts - np.asarray(point, dtype=float), axis=1)
+    i = int(np.argmin(d))
+    return i if float(d[i]) <= float(max_dist) else None
+
+
+def is_light_color(hex_color: str) -> bool:
+    """True if ``#rrggbb`` is perceptually light (Rec.601 luma > ~0.55), so the UI can pick a dark
+    'ink' for the box/labels on a light background and a light ink on a dark one."""
+    try:
+        h = hex_color.lstrip("#")
+        r, g, b = int(h[0:2], 16), int(h[2:4], 16), int(h[4:6], 16)
+        return (0.299 * r + 0.587 * g + 0.114 * b) > 140.0
+    except Exception:
+        return True
+
+
+def project_point_to_plane(point, plane: TagPlane, dims) -> Vec3:
+    """Snap a 3D point onto a tag plane by pinning that plane's fixed axis to its 0/max value; the
+    other two coordinates are kept. Used by plane-locked placement so a click lands exactly on the
+    locked face regardless of where the ray hit."""
+    axis, value = plane_fixed_axis(plane, dims)
+    p = np.asarray(point, dtype=float).copy()
+    p[axis] = value
+    return p
