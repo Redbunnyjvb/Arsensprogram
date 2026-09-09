@@ -4,7 +4,7 @@
   "dimensions_mm": [
     1000,
     420,
-    1350
+    1135
   ],
   "dimensions_locked": false,
   "coordinate_frame": {
@@ -202,7 +202,7 @@
       "position_mm": [
         350,
         300,
-        1350
+        1135
       ],
       "normal": [
         0.0,
@@ -222,7 +222,7 @@
       "position_mm": [
         425,
         325,
-        1350
+        1135
       ],
       "normal": [
         0.0,
@@ -242,7 +242,7 @@
       "position_mm": [
         500,
         350,
-        1350
+        1135
       ],
       "normal": [
         0.0,
@@ -262,7 +262,7 @@
       "position_mm": [
         575,
         325,
-        1350
+        1135
       ],
       "normal": [
         0.0,
@@ -282,7 +282,7 @@
       "position_mm": [
         650,
         300,
-        1350
+        1135
       ],
       "normal": [
         0.0,
@@ -302,7 +302,7 @@
       "position_mm": [
         900,
         350,
-        1350
+        1135
       ],
       "normal": [
         0.0,
@@ -322,7 +322,7 @@
       "position_mm": [
         100,
         350,
-        1350
+        1135
       ],
       "normal": [
         0.0,
@@ -359,9 +359,9 @@
       "type": "apriltag",
       "size_mm": 100,
       "position_mm": [
-        950,
+        50,
         0,
-        1300
+        1085
       ],
       "rotation_deg": [
         0.0,
@@ -377,14 +377,14 @@
       "type": "apriltag",
       "size_mm": 100,
       "position_mm": [
-        1000,
-        370,
-        1300
+        950,
+        50,
+        1135
       ],
       "rotation_deg": [
+        -90.0,
         0.0,
-        0.0,
-        90.0
+        0.0
       ],
       "active": true,
       "pose_weight": 1.0,
@@ -395,32 +395,14 @@
       "type": "apriltag",
       "size_mm": 100,
       "position_mm": [
-        50,
-        50,
-        1350
+        1000,
+        370,
+        1085
       ],
       "rotation_deg": [
-        -90.0,
         0.0,
-        0.0
-      ],
-      "active": true,
-      "pose_weight": 1.0,
-      "origin": "prepared"
-    },
-    {
-      "id": 5,
-      "type": "apriltag",
-      "size_mm": 100,
-      "position_mm": [
-        950,
-        50,
-        1350
-      ],
-      "rotation_deg": [
-        -90.0,
         0.0,
-        0.0
+        90.0
       ],
       "active": true,
       "pose_weight": 1.0,
