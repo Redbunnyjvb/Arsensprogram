@@ -1,0 +1,3263 @@
+{
+  "exported_at": "2026-09-11 11:48",
+  "drift_correction_enabled": false,
+  "project": {
+    "project_name": "test box",
+    "model_file": "transformer_model.glb",
+    "dimensions_mm": [
+      987,
+      414,
+      1500
+    ],
+    "dimensions_locked": true,
+    "reference_geometry_mode": "scanned_walls",
+    "wall_dimension_source": "scanned",
+    "wall_calibration": {
+      "version": 1,
+      "accepted": true,
+      "calibrated_at": "2026-09-11T11:35:55.308614",
+      "dimensions_mm": [
+        987,
+        414,
+        1500
+      ],
+      "dimension_source": "scanned",
+      "geometry_signature": "35970e9e0eb4d253b17aa2a69ab52d3802600b86fe781ee8cf58d50c9c514720",
+      "wall_assignments": [
+        {
+          "tag_id": 1,
+          "wall": "Front",
+          "size_mm": 100
+        },
+        {
+          "tag_id": 7,
+          "wall": "Right",
+          "size_mm": 100
+        },
+        {
+          "tag_id": 4,
+          "wall": "Top",
+          "size_mm": 100
+        },
+        {
+          "tag_id": 8,
+          "wall": "Back",
+          "size_mm": 100
+        },
+        {
+          "tag_id": 9,
+          "wall": "Left",
+          "size_mm": 100
+        },
+        {
+          "tag_id": 3,
+          "wall": "Top",
+          "size_mm": 100
+        }
+      ],
+      "datum": {
+        "lower_tag_id": -1,
+        "height_above_bottom_mm": 0,
+        "top_surface_offset_mm": 0,
+        "side_height_mm": 1500
+      },
+      "quality": {
+        "rms_mm": 2.5405265682168383,
+        "max_residual_mm": 4.400321094130277,
+        "normal_residual_deg": 2.5013344858143016,
+        "repeatability_mm": 7.536867669158476,
+        "top_overlap_verified": true,
+        "used_tag_ids": [
+          1,
+          3,
+          4,
+          7,
+          8,
+          9
+        ],
+        "excluded_tag_ids": []
+      }
+    },
+    "coordinate_frame": {
+      "origin_corner": "front_left_bottom",
+      "flip_x": false,
+      "flip_y": false,
+      "flip_z": false
+    },
+    "sensors": [
+      {
+        "order": 1,
+        "id": "1",
+        "name": "sens",
+        "side": "Top",
+        "position_mm": [
+          95,
+          90,
+          1500
+        ],
+        "normal": [
+          0,
+          0,
+          1
+        ],
+        "tolerance_mm": 50,
+        "instruction": "",
+        "status": "ok",
+        "origin": "on_the_fly",
+        "reference_tag_id": 3,
+        "placement": {
+          "grade": "medium",
+          "tracking_status": "TagCalibration",
+          "tracking_quality_percent": 95,
+          "detection_age_millis": 171,
+          "pose_marker_ids": [
+            3
+          ],
+          "was_stable_placement_lock": false,
+          "reasons": [],
+          "placed_at_wall_millis": 1789119470709,
+          "reference_tag_id": 3,
+          "reprojection_error_px": 0.9791274666786194,
+          "reprojection_error_mm": 0.8638787865638733,
+          "jitter_mm": 0.6182412505149841,
+          "motion_during_detection_mm": 0.4564688205718994,
+          "motion_during_detection_deg": 0.030967265367507935,
+          "fusion_event": "ACCEPT",
+          "fusion_reason": "anchor-image-held"
+        }
+      },
+      {
+        "order": 2,
+        "id": "2",
+        "name": "sens",
+        "side": "Top",
+        "position_mm": [
+          194,
+          88,
+          1500
+        ],
+        "normal": [
+          0,
+          0,
+          1
+        ],
+        "tolerance_mm": 50,
+        "instruction": "",
+        "status": "ok",
+        "origin": "on_the_fly",
+        "reference_tag_id": 3,
+        "placement": {
+          "grade": "high",
+          "tracking_status": "TagCalibration",
+          "tracking_quality_percent": 95,
+          "detection_age_millis": 122,
+          "pose_marker_ids": [
+            3
+          ],
+          "was_stable_placement_lock": true,
+          "reasons": [],
+          "placed_at_wall_millis": 1789119475528,
+          "reference_tag_id": 3,
+          "reprojection_error_px": 0.6497763991355896,
+          "reprojection_error_mm": 0.6023284196853638,
+          "jitter_mm": 0.7302967309951782,
+          "motion_during_detection_mm": 0.07918687164783478,
+          "motion_during_detection_deg": 0.03504858911037445,
+          "fusion_event": "ACCEPT",
+          "fusion_reason": "anchor-image-held"
+        }
+      },
+      {
+        "order": 3,
+        "id": "3",
+        "name": "sens",
+        "side": "Top",
+        "position_mm": [
+          293,
+          87,
+          1500
+        ],
+        "normal": [
+          0,
+          0,
+          1
+        ],
+        "tolerance_mm": 50,
+        "instruction": "",
+        "status": "ok",
+        "origin": "on_the_fly",
+        "reference_tag_id": 3,
+        "placement": {
+          "grade": "medium",
+          "tracking_status": "ArCoreTracking",
+          "tracking_quality_percent": 75,
+          "detection_age_millis": 9223372036854775807,
+          "pose_marker_ids": [],
+          "was_stable_placement_lock": false,
+          "reasons": [],
+          "placed_at_wall_millis": 1789119477606,
+          "reference_tag_id": 3,
+          "reprojection_error_px": 0.1326381266117096,
+          "motion_during_detection_mm": 0.9239119291305542,
+          "motion_during_detection_deg": 0.22797851264476776,
+          "fusion_event": "REJECT",
+          "fusion_reason": "no-reference"
+        }
+      },
+      {
+        "order": 4,
+        "id": "4",
+        "name": "sens",
+        "side": "Top",
+        "position_mm": [
+          390,
+          87,
+          1500
+        ],
+        "normal": [
+          0,
+          0,
+          1
+        ],
+        "tolerance_mm": 50,
+        "instruction": "",
+        "status": "ok",
+        "origin": "on_the_fly",
+        "reference_tag_id": 3,
+        "placement": {
+          "grade": "medium",
+          "tracking_status": "ArCoreTracking",
+          "tracking_quality_percent": 75,
+          "detection_age_millis": 9223372036854775807,
+          "pose_marker_ids": [],
+          "was_stable_placement_lock": false,
+          "reasons": [],
+          "placed_at_wall_millis": 1789119479437,
+          "reference_tag_id": 3,
+          "reprojection_error_px": 0.1326381266117096,
+          "motion_during_detection_mm": 0.4294000566005707,
+          "motion_during_detection_deg": 0.0824848860502243,
+          "fusion_event": "REJECT",
+          "fusion_reason": "no-reference"
+        }
+      },
+      {
+        "order": 5,
+        "id": "5",
+        "name": "sens",
+        "side": "Top",
+        "position_mm": [
+          491,
+          84,
+          1500
+        ],
+        "normal": [
+          0,
+          0,
+          1
+        ],
+        "tolerance_mm": 50,
+        "instruction": "",
+        "status": "ok",
+        "origin": "on_the_fly",
+        "reference_tag_id": 3,
+        "placement": {
+          "grade": "medium",
+          "tracking_status": "ArCoreTracking",
+          "tracking_quality_percent": 75,
+          "detection_age_millis": 9223372036854775807,
+          "pose_marker_ids": [],
+          "was_stable_placement_lock": false,
+          "reasons": [],
+          "placed_at_wall_millis": 1789119483411,
+          "reference_tag_id": 3,
+          "reprojection_error_px": 0.1326381266117096,
+          "motion_during_detection_mm": 0.48008719086647034,
+          "motion_during_detection_deg": 0.17412696778774261,
+          "fusion_event": "REJECT",
+          "fusion_reason": "no-reference"
+        }
+      },
+      {
+        "order": 6,
+        "id": "6",
+        "name": "sens",
+        "side": "Top",
+        "position_mm": [
+          586,
+          87,
+          1500
+        ],
+        "normal": [
+          0,
+          0,
+          1
+        ],
+        "tolerance_mm": 50,
+        "instruction": "",
+        "status": "ok",
+        "origin": "on_the_fly",
+        "reference_tag_id": 4,
+        "placement": {
+          "grade": "medium",
+          "tracking_status": "TagCalibration",
+          "tracking_quality_percent": 95,
+          "detection_age_millis": 77,
+          "pose_marker_ids": [
+            4
+          ],
+          "was_stable_placement_lock": false,
+          "reasons": [],
+          "placed_at_wall_millis": 1789119485880,
+          "reference_tag_id": 4,
+          "reprojection_error_px": 0.3388202488422394,
+          "reprojection_error_mm": 0.4228699505329132,
+          "jitter_mm": 1.1699953079223633,
+          "motion_during_detection_mm": 0.1263313889503479,
+          "motion_during_detection_deg": 0.10869572311639786,
+          "fusion_event": "ACCEPT",
+          "fusion_reason": "anchor-image-held"
+        }
+      },
+      {
+        "order": 7,
+        "id": "7",
+        "name": "sens",
+        "side": "Top",
+        "position_mm": [
+          690,
+          88,
+          1500
+        ],
+        "normal": [
+          0,
+          0,
+          1
+        ],
+        "tolerance_mm": 50,
+        "instruction": "",
+        "status": "ok",
+        "origin": "on_the_fly",
+        "reference_tag_id": 4,
+        "placement": {
+          "grade": "medium",
+          "tracking_status": "TagCalibration",
+          "tracking_quality_percent": 95,
+          "detection_age_millis": 202,
+          "pose_marker_ids": [
+            4
+          ],
+          "was_stable_placement_lock": false,
+          "reasons": [],
+          "placed_at_wall_millis": 1789119491705,
+          "reference_tag_id": 4,
+          "reprojection_error_px": 0.4480355381965637,
+          "reprojection_error_mm": 0.4477050304412842,
+          "jitter_mm": 1.0749677419662476,
+          "motion_during_detection_mm": 0.21383149921894073,
+          "motion_during_detection_deg": 0.0560070276260376,
+          "fusion_event": "ACCEPT",
+          "fusion_reason": "anchor-image-held"
+        }
+      },
+      {
+        "order": 8,
+        "id": "8",
+        "name": "sens",
+        "side": "Top",
+        "position_mm": [
+          787,
+          86,
+          1500
+        ],
+        "normal": [
+          0,
+          0,
+          1
+        ],
+        "tolerance_mm": 50,
+        "instruction": "",
+        "status": "ok",
+        "origin": "on_the_fly",
+        "reference_tag_id": 4,
+        "placement": {
+          "grade": "high",
+          "tracking_status": "TagCalibration",
+          "tracking_quality_percent": 95,
+          "detection_age_millis": 202,
+          "pose_marker_ids": [
+            4
+          ],
+          "was_stable_placement_lock": true,
+          "reasons": [],
+          "placed_at_wall_millis": 1789119494901,
+          "reference_tag_id": 4,
+          "reprojection_error_px": 0.8476942777633667,
+          "reprojection_error_mm": 0.8983866572380066,
+          "jitter_mm": 1.0413665771484375,
+          "motion_during_detection_mm": 0.518365740776062,
+          "motion_during_detection_deg": 0.08590137958526611,
+          "fusion_event": "ACCEPT",
+          "fusion_reason": "anchor-image-held"
+        }
+      },
+      {
+        "order": 9,
+        "id": "9",
+        "name": "sens",
+        "side": "Top",
+        "position_mm": [
+          887,
+          86,
+          1500
+        ],
+        "normal": [
+          0,
+          0,
+          1
+        ],
+        "tolerance_mm": 50,
+        "instruction": "",
+        "status": "ok",
+        "origin": "on_the_fly",
+        "reference_tag_id": 4,
+        "placement": {
+          "grade": "medium",
+          "tracking_status": "TagCalibration",
+          "tracking_quality_percent": 95,
+          "detection_age_millis": 42,
+          "pose_marker_ids": [
+            4
+          ],
+          "was_stable_placement_lock": false,
+          "reasons": [],
+          "placed_at_wall_millis": 1789119496945,
+          "reference_tag_id": 4,
+          "reprojection_error_px": 1.1601612567901611,
+          "reprojection_error_mm": 1.2132245302200317,
+          "jitter_mm": 1.2147244215011597,
+          "motion_during_detection_mm": 0.7099540829658508,
+          "motion_during_detection_deg": 0.2156483232975006,
+          "fusion_event": "ACCEPT",
+          "fusion_reason": "anchor-image-held"
+        }
+      },
+      {
+        "order": 10,
+        "id": "10",
+        "name": "sens",
+        "side": "Top",
+        "position_mm": [
+          789,
+          189,
+          1500
+        ],
+        "normal": [
+          0,
+          0,
+          1
+        ],
+        "tolerance_mm": 50,
+        "instruction": "",
+        "status": "ok",
+        "origin": "on_the_fly",
+        "reference_tag_id": 4,
+        "placement": {
+          "grade": "high",
+          "tracking_status": "TagCalibration",
+          "tracking_quality_percent": 95,
+          "detection_age_millis": 207,
+          "pose_marker_ids": [
+            4
+          ],
+          "was_stable_placement_lock": true,
+          "reasons": [],
+          "placed_at_wall_millis": 1789119503557,
+          "reference_tag_id": 4,
+          "reprojection_error_px": 0.8968425393104553,
+          "reprojection_error_mm": 0.7782841920852661,
+          "jitter_mm": 0.4000000059604645,
+          "motion_during_detection_mm": 0.3628728687763214,
+          "motion_during_detection_deg": 0.03714941814541817,
+          "fusion_event": "ACCEPT",
+          "fusion_reason": "anchor-image-held"
+        }
+      },
+      {
+        "order": 11,
+        "id": "11",
+        "name": "sens",
+        "side": "Top",
+        "position_mm": [
+          690,
+          190,
+          1500
+        ],
+        "normal": [
+          0,
+          0,
+          1
+        ],
+        "tolerance_mm": 50,
+        "instruction": "",
+        "status": "ok",
+        "origin": "on_the_fly",
+        "reference_tag_id": 4,
+        "placement": {
+          "grade": "medium",
+          "tracking_status": "ArCoreTracking",
+          "tracking_quality_percent": 75,
+          "detection_age_millis": 9223372036854775807,
+          "pose_marker_ids": [],
+          "was_stable_placement_lock": false,
+          "reasons": [],
+          "placed_at_wall_millis": 1789119506315,
+          "reference_tag_id": 4,
+          "reprojection_error_px": 0.5854151844978333,
+          "motion_during_detection_mm": 0.10495494306087494,
+          "motion_during_detection_deg": 0.06809090822935104,
+          "fusion_event": "REJECT",
+          "fusion_reason": "no-reference"
+        }
+      },
+      {
+        "order": 12,
+        "id": "12",
+        "name": "sens",
+        "side": "Top",
+        "position_mm": [
+          592,
+          186,
+          1500
+        ],
+        "normal": [
+          0,
+          0,
+          1
+        ],
+        "tolerance_mm": 50,
+        "instruction": "",
+        "status": "ok",
+        "origin": "on_the_fly",
+        "reference_tag_id": 4,
+        "placement": {
+          "grade": "medium",
+          "tracking_status": "ArCoreTracking",
+          "tracking_quality_percent": 75,
+          "detection_age_millis": 9223372036854775807,
+          "pose_marker_ids": [],
+          "was_stable_placement_lock": false,
+          "reasons": [],
+          "placed_at_wall_millis": 1789119508810,
+          "reference_tag_id": 4,
+          "reprojection_error_px": 0.5854151844978333,
+          "motion_during_detection_mm": 1.2913599014282227,
+          "motion_during_detection_deg": 0.14307184517383575,
+          "fusion_event": "REJECT",
+          "fusion_reason": "no-reference"
+        }
+      },
+      {
+        "order": 13,
+        "id": "13",
+        "name": "sens",
+        "side": "Top",
+        "position_mm": [
+          493,
+          188,
+          1500
+        ],
+        "normal": [
+          0,
+          0,
+          1
+        ],
+        "tolerance_mm": 50,
+        "instruction": "",
+        "status": "ok",
+        "origin": "on_the_fly",
+        "reference_tag_id": 4,
+        "placement": {
+          "grade": "medium",
+          "tracking_status": "ArCoreTracking",
+          "tracking_quality_percent": 75,
+          "detection_age_millis": 9223372036854775807,
+          "pose_marker_ids": [],
+          "was_stable_placement_lock": false,
+          "reasons": [],
+          "placed_at_wall_millis": 1789119510692,
+          "reference_tag_id": 4,
+          "reprojection_error_px": 0.5854151844978333,
+          "motion_during_detection_mm": 0.511227548122406,
+          "motion_during_detection_deg": 0.13393744826316833,
+          "fusion_event": "REJECT",
+          "fusion_reason": "no-reference"
+        }
+      },
+      {
+        "order": 14,
+        "id": "14",
+        "name": "sens",
+        "side": "Top",
+        "position_mm": [
+          391,
+          182,
+          1500
+        ],
+        "normal": [
+          0,
+          0,
+          1
+        ],
+        "tolerance_mm": 50,
+        "instruction": "",
+        "status": "ok",
+        "origin": "on_the_fly",
+        "reference_tag_id": 4,
+        "placement": {
+          "grade": "medium",
+          "tracking_status": "ArCoreTracking",
+          "tracking_quality_percent": 75,
+          "detection_age_millis": 9223372036854775807,
+          "pose_marker_ids": [],
+          "was_stable_placement_lock": false,
+          "reasons": [],
+          "placed_at_wall_millis": 1789119514641,
+          "reference_tag_id": 4,
+          "reprojection_error_px": 0.5854151844978333,
+          "motion_during_detection_mm": 0.83905428647995,
+          "motion_during_detection_deg": 0.09127424657344818,
+          "fusion_event": "REJECT",
+          "fusion_reason": "no-reference"
+        }
+      },
+      {
+        "order": 15,
+        "id": "15",
+        "name": "sens",
+        "side": "Top",
+        "position_mm": [
+          298,
+          186,
+          1500
+        ],
+        "normal": [
+          0,
+          0,
+          1
+        ],
+        "tolerance_mm": 50,
+        "instruction": "",
+        "status": "ok",
+        "origin": "on_the_fly",
+        "reference_tag_id": 3,
+        "placement": {
+          "grade": "medium",
+          "tracking_status": "TagCalibration",
+          "tracking_quality_percent": 95,
+          "detection_age_millis": 174,
+          "pose_marker_ids": [
+            3
+          ],
+          "was_stable_placement_lock": false,
+          "reasons": [],
+          "placed_at_wall_millis": 1789119516684,
+          "reference_tag_id": 3,
+          "reprojection_error_px": 0.023854851722717285,
+          "reprojection_error_mm": 0.027703825384378433,
+          "jitter_mm": 0.6009252071380615,
+          "motion_during_detection_mm": 0.3349383473396301,
+          "motion_during_detection_deg": 0.08385244011878967,
+          "fusion_event": "ACCEPT",
+          "fusion_reason": "correction-running"
+        }
+      },
+      {
+        "order": 16,
+        "id": "16",
+        "name": "sens",
+        "side": "Top",
+        "position_mm": [
+          192,
+          192,
+          1500
+        ],
+        "normal": [
+          0,
+          0,
+          1
+        ],
+        "tolerance_mm": 50,
+        "instruction": "",
+        "status": "ok",
+        "origin": "on_the_fly",
+        "reference_tag_id": 3,
+        "placement": {
+          "grade": "medium",
+          "tracking_status": "TagCalibration",
+          "tracking_quality_percent": 95,
+          "detection_age_millis": 133,
+          "pose_marker_ids": [
+            3
+          ],
+          "was_stable_placement_lock": false,
+          "reasons": [],
+          "placed_at_wall_millis": 1789119519886,
+          "reference_tag_id": 3,
+          "reprojection_error_px": 0.7194648385047913,
+          "reprojection_error_mm": 0.7151820659637451,
+          "jitter_mm": 0.8379870057106018,
+          "motion_during_detection_mm": 0.6729418039321899,
+          "motion_during_detection_deg": 0.10818719863891602,
+          "fusion_event": "ACCEPT",
+          "fusion_reason": "anchor-image-held"
+        }
+      },
+      {
+        "order": 17,
+        "id": "17",
+        "name": "sens",
+        "side": "Top",
+        "position_mm": [
+          94,
+          288,
+          1500
+        ],
+        "normal": [
+          0,
+          0,
+          1
+        ],
+        "tolerance_mm": 50,
+        "instruction": "",
+        "status": "ok",
+        "origin": "on_the_fly",
+        "reference_tag_id": 3,
+        "placement": {
+          "grade": "medium",
+          "tracking_status": "TagCalibration",
+          "tracking_quality_percent": 95,
+          "detection_age_millis": 99,
+          "pose_marker_ids": [
+            3
+          ],
+          "was_stable_placement_lock": false,
+          "reasons": [],
+          "placed_at_wall_millis": 1789119525089,
+          "reference_tag_id": 3,
+          "reprojection_error_px": 1.3744041919708252,
+          "reprojection_error_mm": 1.2526748180389404,
+          "jitter_mm": 0.7071067690849304,
+          "motion_during_detection_mm": 0.6275744438171387,
+          "motion_during_detection_deg": 0.22570304572582245,
+          "fusion_event": "ACCEPT",
+          "fusion_reason": "anchor-image-held"
+        }
+      },
+      {
+        "order": 18,
+        "id": "18",
+        "name": "sens",
+        "side": "Top",
+        "position_mm": [
+          197,
+          286,
+          1500
+        ],
+        "normal": [
+          0,
+          0,
+          1
+        ],
+        "tolerance_mm": 50,
+        "instruction": "",
+        "status": "ok",
+        "origin": "on_the_fly",
+        "reference_tag_id": 3,
+        "placement": {
+          "grade": "medium",
+          "tracking_status": "TagCalibration",
+          "tracking_quality_percent": 95,
+          "detection_age_millis": 42,
+          "pose_marker_ids": [
+            3
+          ],
+          "was_stable_placement_lock": false,
+          "reasons": [],
+          "placed_at_wall_millis": 1789119528920,
+          "reference_tag_id": 3,
+          "reprojection_error_px": 0.1695343405008316,
+          "reprojection_error_mm": 0.1328304558992386,
+          "jitter_mm": 0.6666666865348816,
+          "motion_during_detection_mm": 0.3933473229408264,
+          "motion_during_detection_deg": 0.15353915095329285,
+          "fusion_event": "ACCEPT",
+          "fusion_reason": "correction-running"
+        }
+      },
+      {
+        "order": 19,
+        "id": "19",
+        "name": "sens",
+        "side": "Top",
+        "position_mm": [
+          298,
+          285,
+          1500
+        ],
+        "normal": [
+          0,
+          0,
+          1
+        ],
+        "tolerance_mm": 50,
+        "instruction": "",
+        "status": "ok",
+        "origin": "on_the_fly",
+        "reference_tag_id": 3,
+        "placement": {
+          "grade": "medium",
+          "tracking_status": "ArCoreTracking",
+          "tracking_quality_percent": 75,
+          "detection_age_millis": 9223372036854775807,
+          "pose_marker_ids": [],
+          "was_stable_placement_lock": false,
+          "reasons": [],
+          "placed_at_wall_millis": 1789119532934,
+          "reference_tag_id": 3,
+          "reprojection_error_px": 0.6515268683433533,
+          "motion_during_detection_mm": 0.15376722812652588,
+          "motion_during_detection_deg": 0.09665374457836151,
+          "fusion_event": "REJECT",
+          "fusion_reason": "no-reference"
+        }
+      },
+      {
+        "order": 20,
+        "id": "20",
+        "name": "sens",
+        "side": "Top",
+        "position_mm": [
+          397,
+          283,
+          1500
+        ],
+        "normal": [
+          0,
+          0,
+          1
+        ],
+        "tolerance_mm": 50,
+        "instruction": "",
+        "status": "ok",
+        "origin": "on_the_fly",
+        "reference_tag_id": 3,
+        "placement": {
+          "grade": "medium",
+          "tracking_status": "ArCoreTracking",
+          "tracking_quality_percent": 75,
+          "detection_age_millis": 9223372036854775807,
+          "pose_marker_ids": [],
+          "was_stable_placement_lock": false,
+          "reasons": [],
+          "placed_at_wall_millis": 1789119534337,
+          "reference_tag_id": 3,
+          "reprojection_error_px": 0.6515268683433533,
+          "motion_during_detection_mm": 0.2457902580499649,
+          "motion_during_detection_deg": 0.10769669711589813,
+          "fusion_event": "REJECT",
+          "fusion_reason": "no-reference"
+        }
+      },
+      {
+        "order": 21,
+        "id": "21",
+        "name": "sens",
+        "side": "Top",
+        "position_mm": [
+          495,
+          277,
+          1500
+        ],
+        "normal": [
+          0,
+          0,
+          1
+        ],
+        "tolerance_mm": 50,
+        "instruction": "",
+        "status": "ok",
+        "origin": "on_the_fly",
+        "reference_tag_id": 3,
+        "placement": {
+          "grade": "medium",
+          "tracking_status": "ArCoreTracking",
+          "tracking_quality_percent": 75,
+          "detection_age_millis": 9223372036854775807,
+          "pose_marker_ids": [],
+          "was_stable_placement_lock": false,
+          "reasons": [],
+          "placed_at_wall_millis": 1789119535717,
+          "reference_tag_id": 3,
+          "reprojection_error_px": 0.6515268683433533,
+          "motion_during_detection_mm": 0.28303372859954834,
+          "motion_during_detection_deg": 0.13680770993232727,
+          "fusion_event": "REJECT",
+          "fusion_reason": "no-reference"
+        }
+      },
+      {
+        "order": 22,
+        "id": "22",
+        "name": "sens",
+        "side": "Top",
+        "position_mm": [
+          591,
+          275,
+          1500
+        ],
+        "normal": [
+          0,
+          0,
+          1
+        ],
+        "tolerance_mm": 50,
+        "instruction": "",
+        "status": "ok",
+        "origin": "on_the_fly",
+        "reference_tag_id": 3,
+        "placement": {
+          "grade": "medium",
+          "tracking_status": "ArCoreTracking",
+          "tracking_quality_percent": 75,
+          "detection_age_millis": 9223372036854775807,
+          "pose_marker_ids": [],
+          "was_stable_placement_lock": false,
+          "reasons": [],
+          "placed_at_wall_millis": 1789119537499,
+          "reference_tag_id": 3,
+          "reprojection_error_px": 0.6515268683433533,
+          "motion_during_detection_mm": 0.4132062494754791,
+          "motion_during_detection_deg": 0.05081658065319061,
+          "fusion_event": "REJECT",
+          "fusion_reason": "no-reference"
+        }
+      },
+      {
+        "order": 23,
+        "id": "23",
+        "name": "sens",
+        "side": "Top",
+        "position_mm": [
+          690,
+          286,
+          1500
+        ],
+        "normal": [
+          0,
+          0,
+          1
+        ],
+        "tolerance_mm": 50,
+        "instruction": "",
+        "status": "ok",
+        "origin": "on_the_fly",
+        "reference_tag_id": 4,
+        "placement": {
+          "grade": "medium",
+          "tracking_status": "TagCalibration",
+          "tracking_quality_percent": 95,
+          "detection_age_millis": 110,
+          "pose_marker_ids": [
+            4
+          ],
+          "was_stable_placement_lock": false,
+          "reasons": [],
+          "placed_at_wall_millis": 1789119539113,
+          "reference_tag_id": 4,
+          "reprojection_error_px": 0.10422152280807495,
+          "reprojection_error_mm": 0.12414190173149109,
+          "jitter_mm": 1.1666666269302368,
+          "motion_during_detection_mm": 0.569697380065918,
+          "motion_during_detection_deg": 0.07502032816410065,
+          "fusion_event": "ACCEPT",
+          "fusion_reason": "correction-running"
+        }
+      },
+      {
+        "order": 24,
+        "id": "24",
+        "name": "sens",
+        "side": "Top",
+        "position_mm": [
+          784,
+          285,
+          1500
+        ],
+        "normal": [
+          0,
+          0,
+          1
+        ],
+        "tolerance_mm": 50,
+        "instruction": "",
+        "status": "ok",
+        "origin": "on_the_fly",
+        "reference_tag_id": 4,
+        "placement": {
+          "grade": "medium",
+          "tracking_status": "ArCoreTracking",
+          "tracking_quality_percent": 75,
+          "detection_age_millis": 77,
+          "pose_marker_ids": [
+            4
+          ],
+          "was_stable_placement_lock": false,
+          "reasons": [],
+          "placed_at_wall_millis": 1789119540944,
+          "reference_tag_id": 4,
+          "reprojection_error_px": 1.4807941913604736,
+          "reprojection_error_mm": 1.7328903675079346,
+          "motion_during_detection_mm": 0.2354322373867035,
+          "motion_during_detection_deg": 0.09711794555187225,
+          "fusion_event": "PENDING",
+          "fusion_reason": "anchor-settling"
+        }
+      },
+      {
+        "order": 25,
+        "id": "25",
+        "name": "sens",
+        "side": "Top",
+        "position_mm": [
+          887,
+          285,
+          1500
+        ],
+        "normal": [
+          0,
+          0,
+          1
+        ],
+        "tolerance_mm": 50,
+        "instruction": "",
+        "status": "ok",
+        "origin": "on_the_fly",
+        "reference_tag_id": 4,
+        "placement": {
+          "grade": "medium",
+          "tracking_status": "TagCalibration",
+          "tracking_quality_percent": 95,
+          "detection_age_millis": 42,
+          "pose_marker_ids": [
+            4
+          ],
+          "was_stable_placement_lock": false,
+          "reasons": [],
+          "placed_at_wall_millis": 1789119543289,
+          "reference_tag_id": 4,
+          "reprojection_error_px": 0.8664034605026245,
+          "reprojection_error_mm": 1.016987919807434,
+          "jitter_mm": 2.6816246509552,
+          "motion_during_detection_mm": 0.5091878175735474,
+          "motion_during_detection_deg": 0.23424923419952393,
+          "fusion_event": "ACCEPT",
+          "fusion_reason": "anchor-image-held"
+        }
+      },
+      {
+        "order": 26,
+        "id": "26",
+        "name": "sens",
+        "side": "Back",
+        "position_mm": [
+          884,
+          414,
+          1201
+        ],
+        "normal": [
+          0,
+          1,
+          0
+        ],
+        "tolerance_mm": 50,
+        "instruction": "",
+        "status": "ok",
+        "origin": "on_the_fly",
+        "reference_tag_id": 4,
+        "placement": {
+          "grade": "medium",
+          "tracking_status": "ArCoreTracking",
+          "tracking_quality_percent": 75,
+          "detection_age_millis": 70,
+          "pose_marker_ids": [],
+          "was_stable_placement_lock": false,
+          "reasons": [
+            "referentie niet recent gecontroleerd; ARCore volgt verder"
+          ],
+          "placed_at_wall_millis": 1789119583556,
+          "reference_tag_id": 4,
+          "reprojection_error_px": 0.3326473832130432,
+          "motion_during_detection_mm": 0.09727984666824341,
+          "motion_during_detection_deg": 0,
+          "fusion_event": "REJECT",
+          "fusion_reason": "no-reference"
+        }
+      },
+      {
+        "order": 27,
+        "id": "27",
+        "name": "sens",
+        "side": "Back",
+        "position_mm": [
+          784,
+          414,
+          1203
+        ],
+        "normal": [
+          0,
+          1,
+          0
+        ],
+        "tolerance_mm": 50,
+        "instruction": "",
+        "status": "ok",
+        "origin": "on_the_fly",
+        "reference_tag_id": 4,
+        "placement": {
+          "grade": "medium",
+          "tracking_status": "ArCoreTracking",
+          "tracking_quality_percent": 75,
+          "detection_age_millis": 42,
+          "pose_marker_ids": [],
+          "was_stable_placement_lock": false,
+          "reasons": [
+            "referentie niet recent gecontroleerd; ARCore volgt verder"
+          ],
+          "placed_at_wall_millis": 1789119585721,
+          "reference_tag_id": 4,
+          "reprojection_error_px": 0.3326473832130432,
+          "motion_during_detection_mm": 0.14328467845916748,
+          "motion_during_detection_deg": 0.13308002054691315,
+          "fusion_event": "REJECT",
+          "fusion_reason": "no-reference"
+        }
+      },
+      {
+        "order": 28,
+        "id": "28",
+        "name": "sens",
+        "side": "Back",
+        "position_mm": [
+          685,
+          414,
+          1201
+        ],
+        "normal": [
+          0,
+          1,
+          0
+        ],
+        "tolerance_mm": 50,
+        "instruction": "",
+        "status": "ok",
+        "origin": "on_the_fly",
+        "reference_tag_id": 4,
+        "placement": {
+          "grade": "medium",
+          "tracking_status": "ArCoreTracking",
+          "tracking_quality_percent": 75,
+          "detection_age_millis": 73,
+          "pose_marker_ids": [],
+          "was_stable_placement_lock": false,
+          "reasons": [
+            "referentie niet recent gecontroleerd; ARCore volgt verder"
+          ],
+          "placed_at_wall_millis": 1789119588695,
+          "reference_tag_id": 4,
+          "reprojection_error_px": 0.3326473832130432,
+          "motion_during_detection_mm": 0.2365613430738449,
+          "motion_during_detection_deg": 0.04197073355317116,
+          "fusion_event": "REJECT",
+          "fusion_reason": "no-reference"
+        }
+      },
+      {
+        "order": 29,
+        "id": "29",
+        "name": "sens",
+        "side": "Back",
+        "position_mm": [
+          593,
+          414,
+          1204
+        ],
+        "normal": [
+          0,
+          1,
+          0
+        ],
+        "tolerance_mm": 50,
+        "instruction": "",
+        "status": "ok",
+        "origin": "on_the_fly",
+        "reference_tag_id": 4,
+        "placement": {
+          "grade": "medium",
+          "tracking_status": "ArCoreTracking",
+          "tracking_quality_percent": 75,
+          "detection_age_millis": 9223372036854775807,
+          "pose_marker_ids": [],
+          "was_stable_placement_lock": false,
+          "reasons": [
+            "referentie niet recent gecontroleerd; ARCore volgt verder"
+          ],
+          "placed_at_wall_millis": 1789119591132,
+          "reference_tag_id": 4,
+          "reprojection_error_px": 0.3326473832130432,
+          "motion_during_detection_mm": 0.4654388725757599,
+          "motion_during_detection_deg": 0.04257848486304283,
+          "fusion_event": "REJECT",
+          "fusion_reason": "no-reference"
+        }
+      },
+      {
+        "order": 30,
+        "id": "30",
+        "name": "sens",
+        "side": "Back",
+        "position_mm": [
+          496,
+          414,
+          1202
+        ],
+        "normal": [
+          0,
+          1,
+          0
+        ],
+        "tolerance_mm": 50,
+        "instruction": "",
+        "status": "ok",
+        "origin": "on_the_fly",
+        "reference_tag_id": 8,
+        "placement": {
+          "grade": "medium",
+          "tracking_status": "ArCoreTracking",
+          "tracking_quality_percent": 75,
+          "detection_age_millis": 73,
+          "pose_marker_ids": [],
+          "was_stable_placement_lock": false,
+          "reasons": [],
+          "placed_at_wall_millis": 1789119624773,
+          "reference_tag_id": 8,
+          "reprojection_error_px": 0.18136854469776154,
+          "motion_during_detection_mm": 0.6469585299491882,
+          "motion_during_detection_deg": 0.1283658742904663,
+          "fusion_event": "REJECT",
+          "fusion_reason": "no-reference"
+        }
+      },
+      {
+        "order": 31,
+        "id": "31",
+        "name": "sens",
+        "side": "Back",
+        "position_mm": [
+          404,
+          414,
+          1200
+        ],
+        "normal": [
+          0,
+          1,
+          0
+        ],
+        "tolerance_mm": 50,
+        "instruction": "",
+        "status": "ok",
+        "origin": "on_the_fly",
+        "reference_tag_id": 8,
+        "placement": {
+          "grade": "high",
+          "tracking_status": "TagCalibration",
+          "tracking_quality_percent": 95,
+          "detection_age_millis": 144,
+          "pose_marker_ids": [
+            8
+          ],
+          "was_stable_placement_lock": true,
+          "reasons": [],
+          "placed_at_wall_millis": 1789119627602,
+          "reference_tag_id": 8,
+          "reprojection_error_px": 1.0746556520462036,
+          "reprojection_error_mm": 1.346587896347046,
+          "jitter_mm": 1.4298406839370728,
+          "motion_during_detection_mm": 0.1764424443244934,
+          "motion_during_detection_deg": 0.06096750870347023,
+          "fusion_event": "ACCEPT",
+          "fusion_reason": "anchor-image-held"
+        }
+      },
+      {
+        "order": 32,
+        "id": "32",
+        "name": "sens",
+        "side": "Back",
+        "position_mm": [
+          298,
+          414,
+          1199
+        ],
+        "normal": [
+          0,
+          1,
+          0
+        ],
+        "tolerance_mm": 50,
+        "instruction": "",
+        "status": "ok",
+        "origin": "on_the_fly",
+        "reference_tag_id": 8,
+        "placement": {
+          "grade": "medium",
+          "tracking_status": "TagCalibration",
+          "tracking_quality_percent": 95,
+          "detection_age_millis": 98,
+          "pose_marker_ids": [
+            8
+          ],
+          "was_stable_placement_lock": false,
+          "reasons": [],
+          "placed_at_wall_millis": 1789119634262,
+          "reference_tag_id": 8,
+          "reprojection_error_px": 0.13602997362613678,
+          "reprojection_error_mm": 0.16974084079265594,
+          "jitter_mm": 0.7888106107711792,
+          "motion_during_detection_mm": 0.25586414337158203,
+          "motion_during_detection_deg": 0.02616460993885994,
+          "fusion_event": "ACCEPT",
+          "fusion_reason": "correction-running-rotation-held"
+        }
+      },
+      {
+        "order": 33,
+        "id": "33",
+        "name": "sens",
+        "side": "Back",
+        "position_mm": [
+          201,
+          414,
+          1200
+        ],
+        "normal": [
+          0,
+          1,
+          0
+        ],
+        "tolerance_mm": 50,
+        "instruction": "",
+        "status": "ok",
+        "origin": "on_the_fly",
+        "reference_tag_id": 8,
+        "placement": {
+          "grade": "high",
+          "tracking_status": "TagCalibration",
+          "tracking_quality_percent": 95,
+          "detection_age_millis": 57,
+          "pose_marker_ids": [
+            8
+          ],
+          "was_stable_placement_lock": true,
+          "reasons": [],
+          "placed_at_wall_millis": 1789119636267,
+          "reference_tag_id": 8,
+          "reprojection_error_px": 1.0198191404342651,
+          "reprojection_error_mm": 1.257393479347229,
+          "jitter_mm": 0.8432740569114685,
+          "motion_during_detection_mm": 0.20515260100364685,
+          "motion_during_detection_deg": 0.18177811801433563,
+          "fusion_event": "ACCEPT",
+          "fusion_reason": "anchor-image-held"
+        }
+      },
+      {
+        "order": 34,
+        "id": "34",
+        "name": "sens",
+        "side": "Back",
+        "position_mm": [
+          101,
+          414,
+          1205
+        ],
+        "normal": [
+          0,
+          1,
+          0
+        ],
+        "tolerance_mm": 50,
+        "instruction": "",
+        "status": "ok",
+        "origin": "on_the_fly",
+        "reference_tag_id": 8,
+        "placement": {
+          "grade": "high",
+          "tracking_status": "TagCalibration",
+          "tracking_quality_percent": 95,
+          "detection_age_millis": 40,
+          "pose_marker_ids": [
+            8
+          ],
+          "was_stable_placement_lock": true,
+          "reasons": [],
+          "placed_at_wall_millis": 1789119638198,
+          "reference_tag_id": 8,
+          "reprojection_error_px": 1.3026669025421143,
+          "reprojection_error_mm": 1.624951720237732,
+          "jitter_mm": 1.0456258058547974,
+          "motion_during_detection_mm": 0.20974433422088623,
+          "motion_during_detection_deg": 0.06382274627685547,
+          "fusion_event": "ACCEPT",
+          "fusion_reason": "anchor-image-held"
+        }
+      },
+      {
+        "order": 35,
+        "id": "35",
+        "name": "sens",
+        "side": "Back",
+        "position_mm": [
+          98,
+          414,
+          907
+        ],
+        "normal": [
+          0,
+          1,
+          0
+        ],
+        "tolerance_mm": 50,
+        "instruction": "",
+        "status": "ok",
+        "origin": "on_the_fly",
+        "reference_tag_id": 8,
+        "placement": {
+          "grade": "medium",
+          "tracking_status": "ArCoreTracking",
+          "tracking_quality_percent": 75,
+          "detection_age_millis": 9223372036854775807,
+          "pose_marker_ids": [],
+          "was_stable_placement_lock": false,
+          "reasons": [],
+          "placed_at_wall_millis": 1789119643163,
+          "reference_tag_id": 8,
+          "reprojection_error_px": 1.4517083168029785,
+          "motion_during_detection_mm": 0.8826214671134949,
+          "motion_during_detection_deg": 0.14846168458461761,
+          "fusion_event": "REJECT",
+          "fusion_reason": "no-reference"
+        }
+      },
+      {
+        "order": 36,
+        "id": "36",
+        "name": "sens",
+        "side": "Back",
+        "position_mm": [
+          197,
+          414,
+          905
+        ],
+        "normal": [
+          0,
+          1,
+          0
+        ],
+        "tolerance_mm": 50,
+        "instruction": "",
+        "status": "ok",
+        "origin": "on_the_fly",
+        "reference_tag_id": 8,
+        "placement": {
+          "grade": "medium",
+          "tracking_status": "ArCoreTracking",
+          "tracking_quality_percent": 75,
+          "detection_age_millis": 9223372036854775807,
+          "pose_marker_ids": [],
+          "was_stable_placement_lock": false,
+          "reasons": [],
+          "placed_at_wall_millis": 1789119644559,
+          "reference_tag_id": 8,
+          "reprojection_error_px": 1.4517083168029785,
+          "motion_during_detection_mm": 0.28520962595939636,
+          "motion_during_detection_deg": 0.06871313601732254,
+          "fusion_event": "REJECT",
+          "fusion_reason": "no-reference"
+        }
+      },
+      {
+        "order": 37,
+        "id": "37",
+        "name": "sens",
+        "side": "Back",
+        "position_mm": [
+          296,
+          414,
+          901
+        ],
+        "normal": [
+          0,
+          1,
+          0
+        ],
+        "tolerance_mm": 50,
+        "instruction": "",
+        "status": "ok",
+        "origin": "on_the_fly",
+        "reference_tag_id": 8,
+        "placement": {
+          "grade": "medium",
+          "tracking_status": "ArCoreTracking",
+          "tracking_quality_percent": 75,
+          "detection_age_millis": 75,
+          "pose_marker_ids": [],
+          "was_stable_placement_lock": false,
+          "reasons": [],
+          "placed_at_wall_millis": 1789119646314,
+          "reference_tag_id": 8,
+          "reprojection_error_px": 1.4517083168029785,
+          "motion_during_detection_mm": 0.3171846270561218,
+          "motion_during_detection_deg": 0.04144724830985069,
+          "fusion_event": "REJECT",
+          "fusion_reason": "no-reference"
+        }
+      },
+      {
+        "order": 38,
+        "id": "38",
+        "name": "sens",
+        "side": "Back",
+        "position_mm": [
+          406,
+          414,
+          903
+        ],
+        "normal": [
+          0,
+          1,
+          0
+        ],
+        "tolerance_mm": 50,
+        "instruction": "",
+        "status": "ok",
+        "origin": "on_the_fly",
+        "reference_tag_id": 8,
+        "placement": {
+          "grade": "medium",
+          "tracking_status": "ArCoreTracking",
+          "tracking_quality_percent": 75,
+          "detection_age_millis": 40,
+          "pose_marker_ids": [],
+          "was_stable_placement_lock": false,
+          "reasons": [],
+          "placed_at_wall_millis": 1789119647594,
+          "reference_tag_id": 8,
+          "reprojection_error_px": 1.4517083168029785,
+          "motion_during_detection_mm": 0.2910330295562744,
+          "motion_during_detection_deg": 0.08574902266263962,
+          "fusion_event": "REJECT",
+          "fusion_reason": "no-reference"
+        }
+      },
+      {
+        "order": 39,
+        "id": "39",
+        "name": "sens",
+        "side": "Back",
+        "position_mm": [
+          495,
+          414,
+          904
+        ],
+        "normal": [
+          0,
+          1,
+          0
+        ],
+        "tolerance_mm": 50,
+        "instruction": "",
+        "status": "ok",
+        "origin": "on_the_fly",
+        "reference_tag_id": 8,
+        "placement": {
+          "grade": "medium",
+          "tracking_status": "ArCoreTracking",
+          "tracking_quality_percent": 75,
+          "detection_age_millis": 9223372036854775807,
+          "pose_marker_ids": [],
+          "was_stable_placement_lock": false,
+          "reasons": [],
+          "placed_at_wall_millis": 1789119648956,
+          "reference_tag_id": 8,
+          "reprojection_error_px": 1.4517083168029785,
+          "motion_during_detection_mm": 0.9262686967849731,
+          "motion_during_detection_deg": 0.1546676903963089,
+          "fusion_event": "REJECT",
+          "fusion_reason": "no-reference"
+        }
+      },
+      {
+        "order": 40,
+        "id": "40",
+        "name": "sens",
+        "side": "Back",
+        "position_mm": [
+          596,
+          414,
+          900
+        ],
+        "normal": [
+          0,
+          1,
+          0
+        ],
+        "tolerance_mm": 50,
+        "instruction": "",
+        "status": "ok",
+        "origin": "on_the_fly",
+        "reference_tag_id": 8,
+        "placement": {
+          "grade": "medium",
+          "tracking_status": "ArCoreTracking",
+          "tracking_quality_percent": 75,
+          "detection_age_millis": 9223372036854775807,
+          "pose_marker_ids": [],
+          "was_stable_placement_lock": false,
+          "reasons": [
+            "referentie niet recent gecontroleerd; ARCore volgt verder"
+          ],
+          "placed_at_wall_millis": 1789119650491,
+          "reference_tag_id": 8,
+          "reprojection_error_px": 1.4517083168029785,
+          "motion_during_detection_mm": 0.3422115445137024,
+          "motion_during_detection_deg": 0.0639805719256401,
+          "fusion_event": "REJECT",
+          "fusion_reason": "no-reference"
+        }
+      },
+      {
+        "order": 41,
+        "id": "41",
+        "name": "sens",
+        "side": "Back",
+        "position_mm": [
+          685,
+          414,
+          904
+        ],
+        "normal": [
+          0,
+          1,
+          0
+        ],
+        "tolerance_mm": 50,
+        "instruction": "",
+        "status": "ok",
+        "origin": "on_the_fly",
+        "reference_tag_id": 7,
+        "placement": {
+          "grade": "medium",
+          "tracking_status": "ArCoreTracking",
+          "tracking_quality_percent": 75,
+          "detection_age_millis": 72,
+          "pose_marker_ids": [],
+          "was_stable_placement_lock": false,
+          "reasons": [],
+          "placed_at_wall_millis": 1789119676975,
+          "reference_tag_id": 7,
+          "reprojection_error_px": 1.3766098022460938,
+          "motion_during_detection_mm": 0.5309377312660217,
+          "motion_during_detection_deg": 0.16519738733768463,
+          "fusion_event": "REJECT",
+          "fusion_reason": "no-reference"
+        }
+      },
+      {
+        "order": 42,
+        "id": "42",
+        "name": "sens",
+        "side": "Back",
+        "position_mm": [
+          783,
+          414,
+          897
+        ],
+        "normal": [
+          0,
+          1,
+          0
+        ],
+        "tolerance_mm": 50,
+        "instruction": "",
+        "status": "ok",
+        "origin": "on_the_fly",
+        "reference_tag_id": 7,
+        "placement": {
+          "grade": "medium",
+          "tracking_status": "ArCoreTracking",
+          "tracking_quality_percent": 75,
+          "detection_age_millis": 68,
+          "pose_marker_ids": [],
+          "was_stable_placement_lock": false,
+          "reasons": [],
+          "placed_at_wall_millis": 1789119679400,
+          "reference_tag_id": 7,
+          "reprojection_error_px": 1.3766098022460938,
+          "motion_during_detection_mm": 1.4732677936553955,
+          "motion_during_detection_deg": 0.1099526658654213,
+          "fusion_event": "REJECT",
+          "fusion_reason": "no-reference"
+        }
+      },
+      {
+        "order": 43,
+        "id": "43",
+        "name": "sens",
+        "side": "Back",
+        "position_mm": [
+          890,
+          414,
+          895
+        ],
+        "normal": [
+          0,
+          1,
+          0
+        ],
+        "tolerance_mm": 50,
+        "instruction": "",
+        "status": "ok",
+        "origin": "on_the_fly",
+        "reference_tag_id": 7,
+        "placement": {
+          "grade": "medium",
+          "tracking_status": "ArCoreTracking",
+          "tracking_quality_percent": 75,
+          "detection_age_millis": 74,
+          "pose_marker_ids": [],
+          "was_stable_placement_lock": false,
+          "reasons": [],
+          "placed_at_wall_millis": 1789119681252,
+          "reference_tag_id": 7,
+          "reprojection_error_px": 1.3766098022460938,
+          "motion_during_detection_mm": 0.30608654022216797,
+          "motion_during_detection_deg": 0.17086674273014069,
+          "fusion_event": "REJECT",
+          "fusion_reason": "no-reference"
+        }
+      },
+      {
+        "order": 44,
+        "id": "44",
+        "name": "sens",
+        "side": "Left",
+        "position_mm": [
+          0,
+          319,
+          1199
+        ],
+        "normal": [
+          -1,
+          0,
+          0
+        ],
+        "tolerance_mm": 50,
+        "instruction": "",
+        "status": "ok",
+        "origin": "on_the_fly",
+        "reference_tag_id": 9,
+        "placement": {
+          "grade": "medium",
+          "tracking_status": "TagCalibration",
+          "tracking_quality_percent": 95,
+          "detection_age_millis": 56,
+          "pose_marker_ids": [
+            9
+          ],
+          "was_stable_placement_lock": false,
+          "reasons": [],
+          "placed_at_wall_millis": 1789119722820,
+          "reference_tag_id": 9,
+          "reprojection_error_px": 1.0971193313598633,
+          "reprojection_error_mm": 0.9478873610496521,
+          "jitter_mm": 0.5497474074363708,
+          "motion_during_detection_mm": 0.5825293064117432,
+          "motion_during_detection_deg": 0.11750400066375732,
+          "fusion_event": "ACCEPT",
+          "fusion_reason": "anchor-image-held"
+        }
+      },
+      {
+        "order": 45,
+        "id": "45",
+        "name": "sens",
+        "side": "Left",
+        "position_mm": [
+          0,
+          219,
+          1199
+        ],
+        "normal": [
+          -1,
+          0,
+          0
+        ],
+        "tolerance_mm": 50,
+        "instruction": "",
+        "status": "ok",
+        "origin": "on_the_fly",
+        "reference_tag_id": 9,
+        "placement": {
+          "grade": "high",
+          "tracking_status": "TagCalibration",
+          "tracking_quality_percent": 95,
+          "detection_age_millis": 133,
+          "pose_marker_ids": [
+            9
+          ],
+          "was_stable_placement_lock": true,
+          "reasons": [],
+          "placed_at_wall_millis": 1789119724965,
+          "reference_tag_id": 9,
+          "reprojection_error_px": 1.0373977422714233,
+          "reprojection_error_mm": 0.9432947039604187,
+          "jitter_mm": 1.0994948148727417,
+          "motion_during_detection_mm": 0.23173339664936066,
+          "motion_during_detection_deg": 0.02806437946856022,
+          "fusion_event": "ACCEPT",
+          "fusion_reason": "anchor-image-held"
+        }
+      },
+      {
+        "order": 46,
+        "id": "46",
+        "name": "sens",
+        "side": "Left",
+        "position_mm": [
+          0,
+          121,
+          1197
+        ],
+        "normal": [
+          -1,
+          0,
+          0
+        ],
+        "tolerance_mm": 50,
+        "instruction": "",
+        "status": "ok",
+        "origin": "on_the_fly",
+        "reference_tag_id": 9,
+        "placement": {
+          "grade": "medium",
+          "tracking_status": "TagCalibration",
+          "tracking_quality_percent": 95,
+          "detection_age_millis": 142,
+          "pose_marker_ids": [
+            9
+          ],
+          "was_stable_placement_lock": false,
+          "reasons": [],
+          "placed_at_wall_millis": 1789119728610,
+          "reference_tag_id": 9,
+          "reprojection_error_px": 0.8490487337112427,
+          "reprojection_error_mm": 0.8213326334953308,
+          "jitter_mm": 1.469693899154663,
+          "motion_during_detection_mm": 0.7524791359901428,
+          "motion_during_detection_deg": 0.04739993065595627,
+          "fusion_event": "ACCEPT",
+          "fusion_reason": "anchor-image-held"
+        }
+      },
+      {
+        "order": 47,
+        "id": "47",
+        "name": "sens",
+        "side": "Left",
+        "position_mm": [
+          0,
+          25,
+          1192
+        ],
+        "normal": [
+          -1,
+          0,
+          0
+        ],
+        "tolerance_mm": 50,
+        "instruction": "",
+        "status": "ok",
+        "origin": "on_the_fly",
+        "reference_tag_id": 9,
+        "placement": {
+          "grade": "medium",
+          "tracking_status": "TagCalibration",
+          "tracking_quality_percent": 95,
+          "detection_age_millis": 144,
+          "pose_marker_ids": [
+            9
+          ],
+          "was_stable_placement_lock": false,
+          "reasons": [],
+          "placed_at_wall_millis": 1789119730478,
+          "reference_tag_id": 9,
+          "reprojection_error_px": 0.6831638813018799,
+          "reprojection_error_mm": 0.6491292119026184,
+          "jitter_mm": 1.028483271598816,
+          "motion_during_detection_mm": 0.44045206904411316,
+          "motion_during_detection_deg": 0.062385838478803635,
+          "fusion_event": "ACCEPT",
+          "fusion_reason": "anchor-image-held"
+        }
+      },
+      {
+        "order": 48,
+        "id": "48",
+        "name": "sens",
+        "side": "Left",
+        "position_mm": [
+          0,
+          323,
+          903
+        ],
+        "normal": [
+          -1,
+          0,
+          0
+        ],
+        "tolerance_mm": 50,
+        "instruction": "",
+        "status": "ok",
+        "origin": "on_the_fly",
+        "reference_tag_id": 9,
+        "placement": {
+          "grade": "medium",
+          "tracking_status": "ArCoreTracking",
+          "tracking_quality_percent": 75,
+          "detection_age_millis": 108,
+          "pose_marker_ids": [],
+          "was_stable_placement_lock": false,
+          "reasons": [],
+          "placed_at_wall_millis": 1789119734253,
+          "reference_tag_id": 9,
+          "reprojection_error_px": 1.264635682106018,
+          "motion_during_detection_mm": 0.4496490955352783,
+          "motion_during_detection_deg": 0.14596760272979736,
+          "fusion_event": "REJECT",
+          "fusion_reason": "no-reference"
+        }
+      },
+      {
+        "order": 49,
+        "id": "49",
+        "name": "sens",
+        "side": "Left",
+        "position_mm": [
+          0,
+          222,
+          903
+        ],
+        "normal": [
+          -1,
+          0,
+          0
+        ],
+        "tolerance_mm": 50,
+        "instruction": "",
+        "status": "ok",
+        "origin": "on_the_fly",
+        "reference_tag_id": 9,
+        "placement": {
+          "grade": "medium",
+          "tracking_status": "ArCoreTracking",
+          "tracking_quality_percent": 75,
+          "detection_age_millis": 98,
+          "pose_marker_ids": [],
+          "was_stable_placement_lock": false,
+          "reasons": [],
+          "placed_at_wall_millis": 1789119735768,
+          "reference_tag_id": 9,
+          "reprojection_error_px": 1.264635682106018,
+          "motion_during_detection_mm": 0.2545582354068756,
+          "motion_during_detection_deg": 0.09249769896268845,
+          "fusion_event": "REJECT",
+          "fusion_reason": "no-reference"
+        }
+      },
+      {
+        "order": 50,
+        "id": "50",
+        "name": "sens",
+        "side": "Left",
+        "position_mm": [
+          0,
+          125,
+          901
+        ],
+        "normal": [
+          -1,
+          0,
+          0
+        ],
+        "tolerance_mm": 50,
+        "instruction": "",
+        "status": "ok",
+        "origin": "on_the_fly",
+        "reference_tag_id": 9,
+        "placement": {
+          "grade": "medium",
+          "tracking_status": "ArCoreTracking",
+          "tracking_quality_percent": 75,
+          "detection_age_millis": 98,
+          "pose_marker_ids": [],
+          "was_stable_placement_lock": false,
+          "reasons": [],
+          "placed_at_wall_millis": 1789119737192,
+          "reference_tag_id": 9,
+          "reprojection_error_px": 1.264635682106018,
+          "motion_during_detection_mm": 0.34267911314964294,
+          "motion_during_detection_deg": 0.2610722780227661,
+          "fusion_event": "REJECT",
+          "fusion_reason": "no-reference"
+        }
+      },
+      {
+        "order": 51,
+        "id": "51",
+        "name": "sens",
+        "side": "Left",
+        "position_mm": [
+          0,
+          23,
+          892
+        ],
+        "normal": [
+          -1,
+          0,
+          0
+        ],
+        "tolerance_mm": 50,
+        "instruction": "",
+        "status": "ok",
+        "origin": "on_the_fly",
+        "reference_tag_id": 9,
+        "placement": {
+          "grade": "medium",
+          "tracking_status": "ArCoreTracking",
+          "tracking_quality_percent": 75,
+          "detection_age_millis": 9223372036854775807,
+          "pose_marker_ids": [],
+          "was_stable_placement_lock": false,
+          "reasons": [],
+          "placed_at_wall_millis": 1789119739179,
+          "reference_tag_id": 9,
+          "reprojection_error_px": 1.264635682106018,
+          "motion_during_detection_mm": 0.640620231628418,
+          "motion_during_detection_deg": 0.12329603731632233,
+          "fusion_event": "REJECT",
+          "fusion_reason": "no-reference"
+        }
+      }
+    ],
+    "markers": [
+      {
+        "id": 1,
+        "type": "apriltag",
+        "size_mm": 100,
+        "position_mm": [
+          833,
+          0,
+          1326
+        ],
+        "rotation_deg": [
+          0,
+          1.333827,
+          0
+        ],
+        "active": true,
+        "pose_weight": 1,
+        "origin": "on_the_fly"
+      },
+      {
+        "id": 7,
+        "type": "apriltag",
+        "size_mm": 100,
+        "position_mm": [
+          987,
+          210,
+          1317
+        ],
+        "rotation_deg": [
+          0,
+          -0.287612,
+          90
+        ],
+        "active": true,
+        "pose_weight": 1,
+        "origin": "on_the_fly"
+      },
+      {
+        "id": 8,
+        "type": "apriltag",
+        "size_mm": 100,
+        "position_mm": [
+          181,
+          414,
+          1307
+        ],
+        "rotation_deg": [
+          0,
+          1.1227843,
+          180
+        ],
+        "active": true,
+        "pose_weight": 1,
+        "origin": "on_the_fly"
+      },
+      {
+        "id": 9,
+        "type": "apriltag",
+        "size_mm": 100,
+        "position_mm": [
+          0,
+          213,
+          1312
+        ],
+        "rotation_deg": [
+          0,
+          2.1274045,
+          -90
+        ],
+        "active": true,
+        "pose_weight": 1,
+        "origin": "on_the_fly"
+      },
+      {
+        "id": 4,
+        "type": "apriltag",
+        "size_mm": 100,
+        "position_mm": [
+          875,
+          205,
+          1500
+        ],
+        "rotation_deg": [
+          -90,
+          0,
+          -0.4285412
+        ],
+        "active": true,
+        "pose_weight": 1,
+        "origin": "on_the_fly"
+      },
+      {
+        "id": 3,
+        "type": "apriltag",
+        "size_mm": 100,
+        "position_mm": [
+          107,
+          190,
+          1500
+        ],
+        "rotation_deg": [
+          -90,
+          0,
+          -1.0198697
+        ],
+        "active": true,
+        "pose_weight": 1,
+        "origin": "on_the_fly"
+      }
+    ],
+    "stl_models": []
+  },
+  "installation_log": {
+    "project_name": "test box",
+    "started_at": "2026-09-11T11:30:43.595329",
+    "operator": "Operator naam",
+    "results": [
+      {
+        "sensor_id": "1",
+        "expected_position_mm": [
+          95,
+          90,
+          1500
+        ],
+        "measured_position_mm": [
+          95,
+          90,
+          1500
+        ],
+        "measured_offset_mm": [
+          0,
+          0,
+          0
+        ],
+        "distance_error_mm": 0,
+        "status": "ok",
+        "confirmed_at": "2026-09-11T11:37:50.710238"
+      },
+      {
+        "sensor_id": "2",
+        "expected_position_mm": [
+          194,
+          88,
+          1500
+        ],
+        "measured_position_mm": [
+          194,
+          88,
+          1500
+        ],
+        "measured_offset_mm": [
+          0,
+          0,
+          0
+        ],
+        "distance_error_mm": 0,
+        "status": "ok",
+        "confirmed_at": "2026-09-11T11:37:55.529295"
+      },
+      {
+        "sensor_id": "3",
+        "expected_position_mm": [
+          293,
+          87,
+          1500
+        ],
+        "measured_position_mm": [
+          293,
+          87,
+          1500
+        ],
+        "measured_offset_mm": [
+          0,
+          0,
+          0
+        ],
+        "distance_error_mm": 0,
+        "status": "ok",
+        "confirmed_at": "2026-09-11T11:37:57.606353"
+      },
+      {
+        "sensor_id": "4",
+        "expected_position_mm": [
+          390,
+          87,
+          1500
+        ],
+        "measured_position_mm": [
+          390,
+          87,
+          1500
+        ],
+        "measured_offset_mm": [
+          0,
+          0,
+          0
+        ],
+        "distance_error_mm": 0,
+        "status": "ok",
+        "confirmed_at": "2026-09-11T11:37:59.437538"
+      },
+      {
+        "sensor_id": "5",
+        "expected_position_mm": [
+          491,
+          84,
+          1500
+        ],
+        "measured_position_mm": [
+          491,
+          84,
+          1500
+        ],
+        "measured_offset_mm": [
+          0,
+          0,
+          0
+        ],
+        "distance_error_mm": 0,
+        "status": "ok",
+        "confirmed_at": "2026-09-11T11:38:03.412303"
+      },
+      {
+        "sensor_id": "6",
+        "expected_position_mm": [
+          586,
+          87,
+          1500
+        ],
+        "measured_position_mm": [
+          586,
+          87,
+          1500
+        ],
+        "measured_offset_mm": [
+          0,
+          0,
+          0
+        ],
+        "distance_error_mm": 0,
+        "status": "ok",
+        "confirmed_at": "2026-09-11T11:38:05.880521"
+      },
+      {
+        "sensor_id": "7",
+        "expected_position_mm": [
+          690,
+          88,
+          1500
+        ],
+        "measured_position_mm": [
+          690,
+          88,
+          1500
+        ],
+        "measured_offset_mm": [
+          0,
+          0,
+          0
+        ],
+        "distance_error_mm": 0,
+        "status": "ok",
+        "confirmed_at": "2026-09-11T11:38:11.705706"
+      },
+      {
+        "sensor_id": "8",
+        "expected_position_mm": [
+          787,
+          86,
+          1500
+        ],
+        "measured_position_mm": [
+          787,
+          86,
+          1500
+        ],
+        "measured_offset_mm": [
+          0,
+          0,
+          0
+        ],
+        "distance_error_mm": 0,
+        "status": "ok",
+        "confirmed_at": "2026-09-11T11:38:14.901544"
+      },
+      {
+        "sensor_id": "9",
+        "expected_position_mm": [
+          887,
+          86,
+          1500
+        ],
+        "measured_position_mm": [
+          887,
+          86,
+          1500
+        ],
+        "measured_offset_mm": [
+          0,
+          0,
+          0
+        ],
+        "distance_error_mm": 0,
+        "status": "ok",
+        "confirmed_at": "2026-09-11T11:38:16.946068"
+      },
+      {
+        "sensor_id": "10",
+        "expected_position_mm": [
+          789,
+          189,
+          1500
+        ],
+        "measured_position_mm": [
+          789,
+          189,
+          1500
+        ],
+        "measured_offset_mm": [
+          0,
+          0,
+          0
+        ],
+        "distance_error_mm": 0,
+        "status": "ok",
+        "confirmed_at": "2026-09-11T11:38:23.557998"
+      },
+      {
+        "sensor_id": "11",
+        "expected_position_mm": [
+          690,
+          190,
+          1500
+        ],
+        "measured_position_mm": [
+          690,
+          190,
+          1500
+        ],
+        "measured_offset_mm": [
+          0,
+          0,
+          0
+        ],
+        "distance_error_mm": 0,
+        "status": "ok",
+        "confirmed_at": "2026-09-11T11:38:26.316128"
+      },
+      {
+        "sensor_id": "12",
+        "expected_position_mm": [
+          592,
+          186,
+          1500
+        ],
+        "measured_position_mm": [
+          592,
+          186,
+          1500
+        ],
+        "measured_offset_mm": [
+          0,
+          0,
+          0
+        ],
+        "distance_error_mm": 0,
+        "status": "ok",
+        "confirmed_at": "2026-09-11T11:38:28.810949"
+      },
+      {
+        "sensor_id": "13",
+        "expected_position_mm": [
+          493,
+          188,
+          1500
+        ],
+        "measured_position_mm": [
+          493,
+          188,
+          1500
+        ],
+        "measured_offset_mm": [
+          0,
+          0,
+          0
+        ],
+        "distance_error_mm": 0,
+        "status": "ok",
+        "confirmed_at": "2026-09-11T11:38:30.692877"
+      },
+      {
+        "sensor_id": "14",
+        "expected_position_mm": [
+          391,
+          182,
+          1500
+        ],
+        "measured_position_mm": [
+          391,
+          182,
+          1500
+        ],
+        "measured_offset_mm": [
+          0,
+          0,
+          0
+        ],
+        "distance_error_mm": 0,
+        "status": "ok",
+        "confirmed_at": "2026-09-11T11:38:34.642108"
+      },
+      {
+        "sensor_id": "15",
+        "expected_position_mm": [
+          298,
+          186,
+          1500
+        ],
+        "measured_position_mm": [
+          298,
+          186,
+          1500
+        ],
+        "measured_offset_mm": [
+          0,
+          0,
+          0
+        ],
+        "distance_error_mm": 0,
+        "status": "ok",
+        "confirmed_at": "2026-09-11T11:38:36.684464"
+      },
+      {
+        "sensor_id": "16",
+        "expected_position_mm": [
+          192,
+          192,
+          1500
+        ],
+        "measured_position_mm": [
+          192,
+          192,
+          1500
+        ],
+        "measured_offset_mm": [
+          0,
+          0,
+          0
+        ],
+        "distance_error_mm": 0,
+        "status": "ok",
+        "confirmed_at": "2026-09-11T11:38:39.887151"
+      },
+      {
+        "sensor_id": "17",
+        "expected_position_mm": [
+          94,
+          288,
+          1500
+        ],
+        "measured_position_mm": [
+          94,
+          288,
+          1500
+        ],
+        "measured_offset_mm": [
+          0,
+          0,
+          0
+        ],
+        "distance_error_mm": 0,
+        "status": "ok",
+        "confirmed_at": "2026-09-11T11:38:45.090229"
+      },
+      {
+        "sensor_id": "18",
+        "expected_position_mm": [
+          197,
+          286,
+          1500
+        ],
+        "measured_position_mm": [
+          197,
+          286,
+          1500
+        ],
+        "measured_offset_mm": [
+          0,
+          0,
+          0
+        ],
+        "distance_error_mm": 0,
+        "status": "ok",
+        "confirmed_at": "2026-09-11T11:38:48.921272"
+      },
+      {
+        "sensor_id": "19",
+        "expected_position_mm": [
+          298,
+          285,
+          1500
+        ],
+        "measured_position_mm": [
+          298,
+          285,
+          1500
+        ],
+        "measured_offset_mm": [
+          0,
+          0,
+          0
+        ],
+        "distance_error_mm": 0,
+        "status": "ok",
+        "confirmed_at": "2026-09-11T11:38:52.934776"
+      },
+      {
+        "sensor_id": "20",
+        "expected_position_mm": [
+          397,
+          283,
+          1500
+        ],
+        "measured_position_mm": [
+          397,
+          283,
+          1500
+        ],
+        "measured_offset_mm": [
+          0,
+          0,
+          0
+        ],
+        "distance_error_mm": 0,
+        "status": "ok",
+        "confirmed_at": "2026-09-11T11:38:54.337529"
+      },
+      {
+        "sensor_id": "21",
+        "expected_position_mm": [
+          495,
+          277,
+          1500
+        ],
+        "measured_position_mm": [
+          495,
+          277,
+          1500
+        ],
+        "measured_offset_mm": [
+          0,
+          0,
+          0
+        ],
+        "distance_error_mm": 0,
+        "status": "ok",
+        "confirmed_at": "2026-09-11T11:38:55.718091"
+      },
+      {
+        "sensor_id": "22",
+        "expected_position_mm": [
+          591,
+          275,
+          1500
+        ],
+        "measured_position_mm": [
+          591,
+          275,
+          1500
+        ],
+        "measured_offset_mm": [
+          0,
+          0,
+          0
+        ],
+        "distance_error_mm": 0,
+        "status": "ok",
+        "confirmed_at": "2026-09-11T11:38:57.500035"
+      },
+      {
+        "sensor_id": "23",
+        "expected_position_mm": [
+          690,
+          286,
+          1500
+        ],
+        "measured_position_mm": [
+          690,
+          286,
+          1500
+        ],
+        "measured_offset_mm": [
+          0,
+          0,
+          0
+        ],
+        "distance_error_mm": 0,
+        "status": "ok",
+        "confirmed_at": "2026-09-11T11:38:59.113842"
+      },
+      {
+        "sensor_id": "24",
+        "expected_position_mm": [
+          784,
+          285,
+          1500
+        ],
+        "measured_position_mm": [
+          784,
+          285,
+          1500
+        ],
+        "measured_offset_mm": [
+          0,
+          0,
+          0
+        ],
+        "distance_error_mm": 0,
+        "status": "ok",
+        "confirmed_at": "2026-09-11T11:39:00.944549"
+      },
+      {
+        "sensor_id": "25",
+        "expected_position_mm": [
+          887,
+          285,
+          1500
+        ],
+        "measured_position_mm": [
+          887,
+          285,
+          1500
+        ],
+        "measured_offset_mm": [
+          0,
+          0,
+          0
+        ],
+        "distance_error_mm": 0,
+        "status": "ok",
+        "confirmed_at": "2026-09-11T11:39:03.290159"
+      },
+      {
+        "sensor_id": "26",
+        "expected_position_mm": [
+          884,
+          414,
+          1201
+        ],
+        "measured_position_mm": [
+          884,
+          414,
+          1201
+        ],
+        "measured_offset_mm": [
+          0,
+          0,
+          0
+        ],
+        "distance_error_mm": 0,
+        "status": "ok",
+        "confirmed_at": "2026-09-11T11:39:43.556893"
+      },
+      {
+        "sensor_id": "27",
+        "expected_position_mm": [
+          784,
+          414,
+          1203
+        ],
+        "measured_position_mm": [
+          784,
+          414,
+          1203
+        ],
+        "measured_offset_mm": [
+          0,
+          0,
+          0
+        ],
+        "distance_error_mm": 0,
+        "status": "ok",
+        "confirmed_at": "2026-09-11T11:39:45.722267"
+      },
+      {
+        "sensor_id": "28",
+        "expected_position_mm": [
+          685,
+          414,
+          1201
+        ],
+        "measured_position_mm": [
+          685,
+          414,
+          1201
+        ],
+        "measured_offset_mm": [
+          0,
+          0,
+          0
+        ],
+        "distance_error_mm": 0,
+        "status": "ok",
+        "confirmed_at": "2026-09-11T11:39:48.695878"
+      },
+      {
+        "sensor_id": "29",
+        "expected_position_mm": [
+          593,
+          414,
+          1204
+        ],
+        "measured_position_mm": [
+          593,
+          414,
+          1204
+        ],
+        "measured_offset_mm": [
+          0,
+          0,
+          0
+        ],
+        "distance_error_mm": 0,
+        "status": "ok",
+        "confirmed_at": "2026-09-11T11:39:51.132392"
+      },
+      {
+        "sensor_id": "30",
+        "expected_position_mm": [
+          496,
+          414,
+          1202
+        ],
+        "measured_position_mm": [
+          496,
+          414,
+          1202
+        ],
+        "measured_offset_mm": [
+          0,
+          0,
+          0
+        ],
+        "distance_error_mm": 0,
+        "status": "ok",
+        "confirmed_at": "2026-09-11T11:40:24.773701"
+      },
+      {
+        "sensor_id": "31",
+        "expected_position_mm": [
+          404,
+          414,
+          1200
+        ],
+        "measured_position_mm": [
+          404,
+          414,
+          1200
+        ],
+        "measured_offset_mm": [
+          0,
+          0,
+          0
+        ],
+        "distance_error_mm": 0,
+        "status": "ok",
+        "confirmed_at": "2026-09-11T11:40:27.602871"
+      },
+      {
+        "sensor_id": "32",
+        "expected_position_mm": [
+          298,
+          414,
+          1199
+        ],
+        "measured_position_mm": [
+          298,
+          414,
+          1199
+        ],
+        "measured_offset_mm": [
+          0,
+          0,
+          0
+        ],
+        "distance_error_mm": 0,
+        "status": "ok",
+        "confirmed_at": "2026-09-11T11:40:34.262565"
+      },
+      {
+        "sensor_id": "33",
+        "expected_position_mm": [
+          201,
+          414,
+          1200
+        ],
+        "measured_position_mm": [
+          201,
+          414,
+          1200
+        ],
+        "measured_offset_mm": [
+          0,
+          0,
+          0
+        ],
+        "distance_error_mm": 0,
+        "status": "ok",
+        "confirmed_at": "2026-09-11T11:40:36.267557"
+      },
+      {
+        "sensor_id": "34",
+        "expected_position_mm": [
+          101,
+          414,
+          1205
+        ],
+        "measured_position_mm": [
+          101,
+          414,
+          1205
+        ],
+        "measured_offset_mm": [
+          0,
+          0,
+          0
+        ],
+        "distance_error_mm": 0,
+        "status": "ok",
+        "confirmed_at": "2026-09-11T11:40:38.198539"
+      },
+      {
+        "sensor_id": "35",
+        "expected_position_mm": [
+          98,
+          414,
+          907
+        ],
+        "measured_position_mm": [
+          98,
+          414,
+          907
+        ],
+        "measured_offset_mm": [
+          0,
+          0,
+          0
+        ],
+        "distance_error_mm": 0,
+        "status": "ok",
+        "confirmed_at": "2026-09-11T11:40:43.163873"
+      },
+      {
+        "sensor_id": "36",
+        "expected_position_mm": [
+          197,
+          414,
+          905
+        ],
+        "measured_position_mm": [
+          197,
+          414,
+          905
+        ],
+        "measured_offset_mm": [
+          0,
+          0,
+          0
+        ],
+        "distance_error_mm": 0,
+        "status": "ok",
+        "confirmed_at": "2026-09-11T11:40:44.559908"
+      },
+      {
+        "sensor_id": "37",
+        "expected_position_mm": [
+          296,
+          414,
+          901
+        ],
+        "measured_position_mm": [
+          296,
+          414,
+          901
+        ],
+        "measured_offset_mm": [
+          0,
+          0,
+          0
+        ],
+        "distance_error_mm": 0,
+        "status": "ok",
+        "confirmed_at": "2026-09-11T11:40:46.315098"
+      },
+      {
+        "sensor_id": "38",
+        "expected_position_mm": [
+          406,
+          414,
+          903
+        ],
+        "measured_position_mm": [
+          406,
+          414,
+          903
+        ],
+        "measured_offset_mm": [
+          0,
+          0,
+          0
+        ],
+        "distance_error_mm": 0,
+        "status": "ok",
+        "confirmed_at": "2026-09-11T11:40:47.594359"
+      },
+      {
+        "sensor_id": "39",
+        "expected_position_mm": [
+          495,
+          414,
+          904
+        ],
+        "measured_position_mm": [
+          495,
+          414,
+          904
+        ],
+        "measured_offset_mm": [
+          0,
+          0,
+          0
+        ],
+        "distance_error_mm": 0,
+        "status": "ok",
+        "confirmed_at": "2026-09-11T11:40:48.957046"
+      },
+      {
+        "sensor_id": "40",
+        "expected_position_mm": [
+          596,
+          414,
+          900
+        ],
+        "measured_position_mm": [
+          596,
+          414,
+          900
+        ],
+        "measured_offset_mm": [
+          0,
+          0,
+          0
+        ],
+        "distance_error_mm": 0,
+        "status": "ok",
+        "confirmed_at": "2026-09-11T11:40:50.491462"
+      },
+      {
+        "sensor_id": "41",
+        "expected_position_mm": [
+          685,
+          414,
+          904
+        ],
+        "measured_position_mm": [
+          685,
+          414,
+          904
+        ],
+        "measured_offset_mm": [
+          0,
+          0,
+          0
+        ],
+        "distance_error_mm": 0,
+        "status": "ok",
+        "confirmed_at": "2026-09-11T11:41:16.976316"
+      },
+      {
+        "sensor_id": "42",
+        "expected_position_mm": [
+          783,
+          414,
+          897
+        ],
+        "measured_position_mm": [
+          783,
+          414,
+          897
+        ],
+        "measured_offset_mm": [
+          0,
+          0,
+          0
+        ],
+        "distance_error_mm": 0,
+        "status": "ok",
+        "confirmed_at": "2026-09-11T11:41:19.400981"
+      },
+      {
+        "sensor_id": "43",
+        "expected_position_mm": [
+          890,
+          414,
+          895
+        ],
+        "measured_position_mm": [
+          890,
+          414,
+          895
+        ],
+        "measured_offset_mm": [
+          0,
+          0,
+          0
+        ],
+        "distance_error_mm": 0,
+        "status": "ok",
+        "confirmed_at": "2026-09-11T11:41:21.25292"
+      },
+      {
+        "sensor_id": "44",
+        "expected_position_mm": [
+          0,
+          319,
+          1199
+        ],
+        "measured_position_mm": [
+          0,
+          319,
+          1199
+        ],
+        "measured_offset_mm": [
+          0,
+          0,
+          0
+        ],
+        "distance_error_mm": 0,
+        "status": "ok",
+        "confirmed_at": "2026-09-11T11:42:02.821019"
+      },
+      {
+        "sensor_id": "45",
+        "expected_position_mm": [
+          0,
+          219,
+          1199
+        ],
+        "measured_position_mm": [
+          0,
+          219,
+          1199
+        ],
+        "measured_offset_mm": [
+          0,
+          0,
+          0
+        ],
+        "distance_error_mm": 0,
+        "status": "ok",
+        "confirmed_at": "2026-09-11T11:42:04.966021"
+      },
+      {
+        "sensor_id": "46",
+        "expected_position_mm": [
+          0,
+          121,
+          1197
+        ],
+        "measured_position_mm": [
+          0,
+          121,
+          1197
+        ],
+        "measured_offset_mm": [
+          0,
+          0,
+          0
+        ],
+        "distance_error_mm": 0,
+        "status": "ok",
+        "confirmed_at": "2026-09-11T11:42:08.611209"
+      },
+      {
+        "sensor_id": "47",
+        "expected_position_mm": [
+          0,
+          25,
+          1192
+        ],
+        "measured_position_mm": [
+          0,
+          25,
+          1192
+        ],
+        "measured_offset_mm": [
+          0,
+          0,
+          0
+        ],
+        "distance_error_mm": 0,
+        "status": "ok",
+        "confirmed_at": "2026-09-11T11:42:10.479035"
+      },
+      {
+        "sensor_id": "48",
+        "expected_position_mm": [
+          0,
+          323,
+          903
+        ],
+        "measured_position_mm": [
+          0,
+          323,
+          903
+        ],
+        "measured_offset_mm": [
+          0,
+          0,
+          0
+        ],
+        "distance_error_mm": 0,
+        "status": "ok",
+        "confirmed_at": "2026-09-11T11:42:14.253627"
+      },
+      {
+        "sensor_id": "49",
+        "expected_position_mm": [
+          0,
+          222,
+          903
+        ],
+        "measured_position_mm": [
+          0,
+          222,
+          903
+        ],
+        "measured_offset_mm": [
+          0,
+          0,
+          0
+        ],
+        "distance_error_mm": 0,
+        "status": "ok",
+        "confirmed_at": "2026-09-11T11:42:15.768799"
+      },
+      {
+        "sensor_id": "50",
+        "expected_position_mm": [
+          0,
+          125,
+          901
+        ],
+        "measured_position_mm": [
+          0,
+          125,
+          901
+        ],
+        "measured_offset_mm": [
+          0,
+          0,
+          0
+        ],
+        "distance_error_mm": 0,
+        "status": "ok",
+        "confirmed_at": "2026-09-11T11:42:17.193089"
+      },
+      {
+        "sensor_id": "51",
+        "expected_position_mm": [
+          0,
+          23,
+          892
+        ],
+        "measured_position_mm": [
+          0,
+          23,
+          892
+        ],
+        "measured_offset_mm": [
+          0,
+          0,
+          0
+        ],
+        "distance_error_mm": 0,
+        "status": "ok",
+        "confirmed_at": "2026-09-11T11:42:19.179804"
+      }
+    ]
+  }
+}

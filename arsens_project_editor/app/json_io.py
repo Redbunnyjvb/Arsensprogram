@@ -17,7 +17,27 @@ def project_to_dict(project: Project) -> dict:
 
 
 def project_from_dict(data: dict) -> Project:
-    d = dict(data)
+    if not isinstance(data, dict):
+        raise ValueError("ARsens JSON root must be an object.")
+
+    # Accept both:
+    #   1) a plain project JSON: {"project_name": ..., "sensors": ...}
+    #   2) an ARsens report/export envelope:
+    #      {"exported_at": ..., "project": {...}, "installation_log": ...}
+    if isinstance(data.get("project"), dict):
+        d = dict(data["project"])
+    else:
+        d = dict(data)
+
+    # Do not silently turn an unrelated/wrong JSON file into a blank default project.
+    recognised = {"project_name", "dimensions_mm", "coordinate_frame",
+                  "sensors", "markers", "stl_models"}
+    if not any(key in d for key in recognised):
+        raise ValueError(
+            "This JSON file does not contain a recognizable ARsens project. "
+            "Expected project fields at the root or inside a 'project' object."
+        )
+
     sensors = []
     for s in d.get("sensors", []):
         s = dict(s)

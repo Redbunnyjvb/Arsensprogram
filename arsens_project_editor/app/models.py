@@ -103,7 +103,9 @@ class StlModel(BaseModel):
 
 
 class Project(BaseModel):
-    model_config = ConfigDict(extra="ignore")
+    # Preserve newer/future ARsens project fields that this desktop editor does not
+    # explicitly understand yet (e.g. scanned-wall calibration metadata).
+    model_config = ConfigDict(extra="allow")
     project_name: str = "Transformer A"
     model_file: str = "transformer_model.glb"
     dimensions_mm: list[int] = [10000, 5000, 3200]
